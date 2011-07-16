@@ -1,0 +1,12 @@
+Story: Grader changes settings in the account settings page.
+
+  As a grader
+  I want to add or remove preferred grade levels.
+
+  Scenario: Remove preferred grade levels and see that it corresponds
+
+    Given a logged in grader with grades 1, 3, and 7 as preferred grade levels
+
+    When the grader removes grade 3 and 1 as a preferred grade level
+
+    Then there should be only grade level 7 checked off as preferred grade level

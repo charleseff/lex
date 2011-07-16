@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+<% 1.upto(10) do |n| %>
+book_<%=n%>:
+    title: "Book <%=n%>"
+    author: "Author <%=n%>"
+<% end %>
+
+book_with_the_same_name_but_different_author:
+    title: "Book 1"
+    author: "Another Author"

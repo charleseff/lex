@@ -1,0 +1,59 @@
+<%   title "Resource Center" -%>
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1>Resource Center</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+</div>
+<div class="FullColSection">
+  <h3>Helpful Materials</h3>
+  <p>Use the following guides to learn more about writing better book reports. </p>
+  <div class="AlertBox">
+    <ul>
+      <li class="resource">
+        <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+          <p><%= link_to '<strong>Marking Guide</strong>', grader_resource_center_path(:action=> 'resource', :id=>'marking_guide') %>
+            <br>How to make corrections on student book reports using Microsoft Word.</p>
+        </td></tr></tbody></table>
+      </li>
+      <li class="resource">
+        <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+          <p><%= link_to '<strong>Performance Breakdown (Grade 3/4)</strong>', grader_resource_center_path(:action=> 'resource', :id=>'performance_breakdown_(grade_3-4)') %>
+            <br>Scoring chart for grading grades 3 and 4.</p>
+        </td></tr></tbody></table>
+      </li>
+      <li class="resource">
+        <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+          <p><%= link_to '<strong>Performance Breakdown (Grade 5/6)</strong>', grader_resource_center_path(:action=> 'resource', :id=>'performance_breakdown_(grade_5-6)') %>
+            <br>Scoring chart for grading grades 5 and 6.</p>
+        </td></tr></tbody></table>
+      </li>
+      <li class="resource last">
+        <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+          <p><%= link_to '<strong>Performance Breakdown (Grade 7/8)</strong>', grader_resource_center_path(:action=> 'resource', :id=>'performance_breakdown_(grade_7-8)') %>
+            <br>Scoring chart for grading grades 7 and 8.</p>
+        </td></tr></tbody></table>
+      </li>
+    </ul>
+  </div>
+</div>
+<h3>Sample Book Reports</h3>
+<p>Review these book reports and corresponding scores/comments.</p>
+<div class="AlertBox">
+  <ul>
+    <li class="aplus">
+      <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+        <p><%= link_to "<strong>Grade 4: Matilda by Roald Dahl (A+ Book Report)</strong>", :action => 'resource', :id => 'sample_report_matilda_a_plus' %>
+        <br/>Review a well-written paper and its corresponding Grader's Comments.</p>
+      </td></tr></tbody></table>
+    </li>
+    <li class="bminus last">
+      <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+        <p><%= link_to "<strong>Grade 4: Matilda by Roald Dahl (B- Book Report)</strong>", :action => 'resource', :id => 'sample_report_matilda_b_minus' %>
+        <br/>Review a heavily marked paper and its corresponding Grader's Comments.</p>
+      </td></tr></tbody></table>
+    </li>
+  </ul>
+</div>

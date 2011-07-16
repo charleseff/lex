@@ -1,0 +1,17 @@
+# /var/www/apps/lexkimbookreports/current/script/process/spawner -p 8000 -i 2 -e production -a 127.0.0.1 b
+
+#-e production -p 8000 -N 2 -c /home/deploy/public_html/steamboatfoundation.org/ -a 127.0.0.1 --prefix /donate
+
+
+# this spin script requires some variables to be passed in
+# it also calls the spawner using nohup, see:
+#  <a href="http://johnwilger.com/articles/2006/04/03/fix-signalerror-when-executing-rake-remote-spinner-rake-remote-cold_deploy-under-capistrano-1-1-0-and-rails-1-1-0">http://johnwilger.com/articles/2006/04/03/fix-signalerror-when-executing-rake-remote-spinner-rake-remote-cold_deploy-under-capistrano-1-1-0-and-rails-1-1-0</a>
+#  for details
+# TODO: have them default to acceptable values
+
+RELEASE_PATH=$1
+START_PORT=$2
+INSTANCES=$3
+ENVIRONMENT=$4
+
+$RELEASE_PATH/script/process/spawner -p $START_PORT -i $INSTANCES -e $ENVIRONMENT -a 127.0.0.1 b

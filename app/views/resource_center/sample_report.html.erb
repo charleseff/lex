@@ -1,0 +1,49 @@
+<div id="ContentSample">
+  <div id="BodyText">
+    <div id="FullColSample">
+      <div class="FullColSection">
+        <div id="FullColLeft">
+          <table cellpadding="0" cellspacing="0"><tr valign="top"><td width="62"><%= image_tag 'sample_tag.gif' %></td><td><h1><%= @report.book.title %> by <%= @report.book.author %></h1></td></tr></table>
+        </div>
+        <div id="FullColRight">
+          <p><%= link_to 'Return to Home', root_path %></p>
+        </div>
+        <div class="ClearAll"></div>
+        <div class="AlertBox">
+          <ul>
+            <li class="graded last">
+              <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+                <p>This is a sample book report from Grade Level <%= @report.grade_level.level %>. It received a grade of <strong><%= @report.final_grade %></strong>.</p>
+              </td></tr></table>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="FullColSection">
+        <h1>Book Report Assessment</h1>
+	  </div>
+	  <div class="FullColSection">
+	    <h3>Selected Book Report Assignment</h3>
+	    <div class="AssignmentBox">
+	      <h4><%= @report.assignment_topic.name %></h4>
+	      <p><%= render :partial => "assignment_topics/#{@report.assignment_topic.name.downcase.gsub(' ', '_')}"%></p>
+	    </div>
+	  </div>
+	  <div class="FullColSection">
+		<h3>Download Book Report</h3>
+        <%= link_to "#{image_tag 'downloadgraded_button.gif', {:class=>'buttonbottomspace'}}", :action => :sample_report_pdf , :id => @report%>
+      </div>
+      <div class="FullColSection">
+        <h3>Grader's Comments</h3>
+        <div class="CommentsBox">
+          <%= substitute_paragraphs(@report.grader_comment) %>
+        </div>
+      </div>
+      <h3>Performance Breakdown</h3>
+      <p>The following is a breakdown of <%= is_student? ? 'your' : 'the' %> book report grade.</p>
+      <%= render(:partial => 'shared/graded_ptal') %>
+      <div><%= image_tag 'returntotop_button.gif', { :class=>"top_link linkcolor"} %></div>
+    </div>
+  </div>
+  <div class="ClearAll"></div>
+</div>

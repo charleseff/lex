@@ -1,0 +1,12 @@
+<h4>Links:</h4>
+<ul>
+  <% if logged_in? %>
+    <% if not current_user.is_a? Administrator %>
+      <li>   <%= link_to 'Account Settings', {:controller => '/account', :action =>:settings} %> </li>
+    <% end %>
+    <li>   <%= link_to 'Logout', {:controller => '/account', :action =>:logout} %> </li>
+  <% else %>
+    <li>   <%= link_to 'Login',login_path %> </li>
+  <% end %>
+  <li>   <%= link_to 'Home', {:controller => '/home', :action =>:index} %> </li>
+</ul>

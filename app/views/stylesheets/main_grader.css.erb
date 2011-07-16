@@ -1,0 +1,131 @@
+/*--------------MISCELLANEOUS----------------*/
+
+/* Outer bounding box for all pages */
+#Frame {
+	margin: 0px auto 0px auto;
+	padding: 0px;
+	background: #ffffff;
+	border-left: 10px solid #30492C;
+	border-right: 10px solid #30492C;
+	width: 690px; }
+
+/* Basic header style applied to H1 element */
+/* Phark Image Replacement Technique */
+
+
+#Header{
+	position: relative;
+	margin: 0px auto 0px auto;
+	padding:0px 0px 0px 0px;
+	width: 690px;
+	height: 100px;
+	background: #30492C;
+	}
+
+/*--------------SUB NAVIGATION----------------*/
+#navigation {
+	background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) #124866 no-repeat;
+	height: 24px;
+	width: 690px;
+	margin: 20px 0 0px 0px;
+	padding: 0;
+	position: relative;
+	float: right;
+	}
+
+	#nav_help {left: 370px; width: 97px;}
+
+
+#nav_welcome a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -23px -48px no-repeat;}
+#nav_bookreports a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -112px -48px no-repeat;}
+#nav_resourcecenter a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -245px -48px no-repeat;}
+#nav_help a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -370px -48px no-repeat;}
+
+#nav_welcome a.selected:link, #nav_welcome a.selected:hover, #nav_welcome a.selected:visited, #nav_welcome a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -23px -24px no-repeat;}
+#nav_bookreports a.selected:link, #nav_bookreports a.selected:hover, #nav_bookreports a.selected:visited, #nav_bookreports a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -112px -24px no-repeat;}
+#nav_resourcecenter a.selected:link, #nav_resourcecenter a.selected:hover, #nav_resourcecenter a.selected:visited, #nav_resourcecenter a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -245px -24px no-repeat;}
+#nav_help a.selected:link, #nav_help a.selected:hover, #nav_help a.selected:visited, #nav_help a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation_grader.gif) -370px -24px no-repeat;}
+
+
+/*---------------LAYOUT BOXES----------------------*/
+
+#AssignmentsDropDown {
+	float: left;
+	width: 600px;
+	padding: 20px 20px 5px 20px;
+	margin: 0 0 15px 0;
+	background: #CC4509;
+}
+
+.uploadedfile {
+	background: url(<%= @controller.request.relative_url_root %>/images/file_icon.gif) no-repeat left top;
+	margin: 8px 0 0 0;
+	padding: 6px 0 0 55px;
+	min-height: 55px;
+}
+
+/*---------------------Graded Page-----------------------*/
+
+.Col2{
+	width: 101px;
+	padding: 7px 0 8px 0;
+	text-align: center;
+}
+
+.CommentsBoxWriting {
+	font-family: Arial, verdana, sans-serif;
+	font-size: 12px;
+	border: 1px solid #666666;
+	padding: 15px 20px 15px 20px;
+	width: 595px;
+	height: 100px;
+	margin: 5px 0 15px 0;
+	background: #ffffff;
+}
+
+/*---------------------Misc-----------------------*/
+
+.selectfield {
+	border: 1px solid #AAAAAA;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 12px;
+	padding: 1px;
+	margin: 0;
+}
+
+.buttonbigbottomspace {
+	margin: 0 0 15px 0;
+}
+
+/*-------------------Body Text-----------------------*/
+	
+#BodyText h1 {
+	padding: 0px 0px 15px 0px;
+	margin: 0;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+	color: #000000; }
+
+#BodyText a:link, #BodyText a:visited { color: #CC4509; text-decoration: none; cursor: pointer;}
+#BodyText a:hover, #BodyText a:visited:hover { color: #30492C;text-decoration: underline; cursor: pointer; }
+
+#BodyText p a:link, #BodyText p a:visited { color: #CC4509; text-decoration: underline; font-weight: normal; cursor: pointer;}
+#BodyText p a:hover, #BodyText p a:visited:hover { color: #30492C;text-decoration: underline; font-weight: normal; cursor: pointer;}
+
+#BodyText p a.ReportLink:link, #BodyText p a.ReportLink:visited { color: #AA690C; text-decoration: none; font-weight: bold;}
+#BodyText p a.ReportLink:hover, #BodyText p a.ReportLink:visited:hover { color: #5D87A1;text-decoration: underline; font-weight: bold;}
+
+#BodyText h6 a:link, #BodyText h6 a:visited { color: #FFCF01; text-decoration: none; font-weight: normal;}
+#BodyText h6 a:hover, #BodyText h6 a:visited:hover { color: #ffffff;text-decoration: underline; font-weight: normal;}
+
+/*-------------- Copyright Footer -----------------*/
+#Copyright {
+	margin: 0px auto 0px auto;
+	border-left: 10px solid #30492C;
+	border-right: 10px solid #30492C;
+	width: 690px;
+	padding: 0px 0px 12px 0px;
+	text-align: right;
+	background: #30492C;
+}

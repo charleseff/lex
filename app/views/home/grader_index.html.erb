@@ -1,0 +1,55 @@
+<% title "Grader Home" %>
+
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1>Hello, <%= h @grader.first_name%>!</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'View My Account Settings', :controller => :account, :action => :settings %></p>
+  </div>
+  <div class="ClearAll"></div>
+  <%
+     if not @grader.ungraded_reports.empty?
+       report = @grader.ungraded_reports[0]
+  %>
+    <div class="AlertBox">
+      <ul>
+        <li class="grading last">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+            <p>You are currently grading
+              <%= link_to  "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)}</strong>", { :controller => :grader_reports, :action => :show, :id => report } %>,
+              <strong>Due <%= convert_date_time_full_month(@grader.tz.utc_to_local(report.grading_due)) -%>.</strong>
+            </p>
+          </td></tr></table>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</div>
+<div class="ClearAll"></div>
+<%
+   if flash[:just_graded]
+%>
+  <div class="FullColSection">
+    <h1 class="BigMessage">Congratulations, you have successfully submitted
+      a graded book report!</h1>
+  </div>
+<% end %>
+
+<div id="SubmittedMessage">
+  <% if @grader.can_grade_another_report %>
+    <h1>Get Started<%= flash[:just_graded] ? ' on Another Book Report' : ''%></h1>
+    <p>Note: Once you pick up a new book report, you have <%= MAX_TIME_TO_GRADE_REPORTS/60/60/24 %> days to grade it.</p>
+    <%  form_tag :controller => :report_queue, :action => :auto_assign do -%>
+      <%= image_submit_tag 'pickupnewbookreport_button.gif' , :class=>'buttonbottomspace'%>
+    <% end %>
+  <% else %>
+    <h1 class="BigMessage">You’re currently in the middle of grading. <br />
+      Finish grading and submit in order to pick up a new book report.</h1>
+    <%= link_to image_tag('finishgradingbookreport_button.gif'), { :controller => :grader_reports, :action => :show, :id => report }, {:class => 'buttonbottomspace'} %>
+  <% end %>
+  <% if flash[:status] %>
+    <h1 class="BigMessage"><%= flash[:status] %></h1>
+  <% end %>
+</div>
+

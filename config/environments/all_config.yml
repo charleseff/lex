@@ -1,0 +1,1 @@
+temp_file_directory: <%=RAILS_ROOT%>/tmp

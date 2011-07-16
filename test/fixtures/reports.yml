@@ -1,0 +1,103 @@
+bobby_report_graded_by_sean:
+  book: book_2
+  student: bobby
+  grader: sean
+  assigned_to_grader_at: <%= (1.days + 4.hours).ago.to_s :db %>
+  graded_at: <%=  1.days.ago.to_s :db %>
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+bessy_report:
+  book: book_1
+  student: bessy
+  created_at:  <%= 2.days.ago.to_s :db %>
+  archive_notification_sent: false
+  created_at: <%= 1.days.ago.to_s :db %>
+  grade_level: grade_level_4
+  assignment_topic: one
+
+# this will not have a grader:
+bobby_report_no_grader:
+  book: book_1
+  student: bobby # bobby
+  created_at:  <%= 4.days.ago.to_s :db %>
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+bobby_report_graded_and_inactive:
+  book: book_3
+  student: bobby # bobby
+  grader: kate #kate
+  created_at:  <%= 4.days.ago.to_s :db %>
+  assigned_to_grader_at: <%= (3.days + 4.hours).ago.to_s :db %>
+  graded_at:  <%= 3.days.ago.to_s :db %>
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+bobby_report_assigned_to_but_ungraded_by_sean:
+  book: book_2
+  student: bobby
+  grader: sean
+  created_at:  <%= 3.days.ago.to_s :db %>
+  assigned_to_grader_at: <%= 1.days.ago.to_s :db %>
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+  last_saved_by_grader_at: <%= (Time.now - 5.seconds).to_s :db  %>
+
+bobby_report_ready_for_warning:
+  book: book_1
+  student: bobby
+  grader: sean
+  created_at:  <%= 5.days.ago.to_s :db %>
+  assigned_to_grader_at: <%= (Time.now - MAX_TIME_TO_GRADE_REPORTS + 12.hours).to_s :db %>
+  grader_was_warned: false
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+ready_to_be_dropped_report:
+  book: book_2
+  student: bobby
+  grader: tardy_grader
+  created_at:  <%= 5.days.ago.to_s :db %>
+  assigned_to_grader_at: <%= (Time.now - MAX_TIME_TO_GRADE_REPORTS - 24.hours).to_s :db %>
+  grader_was_warned: true
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+report_over_3_days_graded_but_not_yet_23_59_of_that_day:
+  book: book_2
+  student: bobby
+  grader: sean
+  created_at:  <%= 5.days.ago.to_s :db %>
+  assigned_to_grader_at: <%= (Time.now - MAX_TIME_TO_GRADE_REPORTS - 1.minute).to_s :db %>
+  grader_was_warned: true
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+report_ready_to_get_archived_notification:
+  book: book_2
+  student: bessy
+  grader: sean
+  created_at:  <%= 1.days.ago.to_s :db %>
+  assigned_to_grader_at: <%= (Time.now - MAX_IDLE_ACTIVE_TIME + 4.hours).to_s :db %>
+  graded_at: <%= (Time.now - MAX_IDLE_ACTIVE_TIME + 1.hour).to_s :db %>
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one
+
+bobby_report_graded_most_recently:
+  book: book_2
+  student: bobby
+  grader: sean
+  assigned_to_grader_at: <%= (1.days + 4.hours).ago.to_s :db %>
+  graded_at: <%=  1.hour.ago.to_s :db %>
+  archive_notification_sent: false
+  grade_level: grade_level_4
+  assignment_topic: one

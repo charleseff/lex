@@ -1,0 +1,10 @@
+Story: Grader report submitting
+
+  As a grader
+  I want to submit and preview a report
+
+  Scenario: Grader submits and previews a report, and the preview page shows up properly.
+
+    Given a logged in grader with ungraded report
+    When the grader submits a report for previewing
+    Then he should be redirected to the preview page

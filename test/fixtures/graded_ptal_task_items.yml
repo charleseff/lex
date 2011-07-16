@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+<% 1.upto(15) do |i| %>
+bobby_report_graded_by_sean_graded_ptal_task_item_<%=i%>:
+  report: bobby_report_graded_by_sean
+  ptal_task_item: ptal_task_item_<%= 15*3 + i %>
+  points_earned: 1
+<% end %>
+
+<% 1.upto(15) do |i| %>
+bobby_report_graded_and_inactive_<%=i%>:
+  report: bobby_report_graded_by_sean
+  ptal_task_item: ptal_task_item_<%= 15*3 + i %>
+  points_earned: 1
+<% end %>

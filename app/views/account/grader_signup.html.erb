@@ -1,0 +1,33 @@
+<%= error_messages_for :grader %>
+<% if @errors and not @errors.empty? %>
+  <%= render :partial => '/shared/alerts/errors', :locals => {:header => 'There were errors creating your account.', :messages => @errors} %>
+<% end %>
+<% title "Grader Signup" %>
+<% form_for :user do |f| -%>
+
+  <p class="label"><label for="first_name">First Name</label></p>
+    <%= f.text_field :first_name, :class=>'inputfield' %>
+
+  <p class="label"><label for="last_name">Last Name</label></p>
+    <%= f.text_field :last_name, :class=>'inputfield' %>
+
+  <p class="label"><label for="email">Email</label></p>
+    <%= f.text_field :email, :class=>'inputfield' %>
+
+  <p class="label"><label for="password">Password</label></p>
+    <%= f.password_field :password, :class=>'inputfield' %>
+
+  <p class="label"><label for="password_confirmation">Confirm Password</label></p>
+    <%= f.password_field :password_confirmation, :class=>'inputfield' %>
+
+  <p class="label"><label for="grade_level"><strong>Preferred Grade Levels</strong></label></p>
+  <p class="nobreak">Select any grade levels that you would prefer to grade:</p>
+  <p class="smalltext">Note: Selecting preferred grade levels does not guarantee only those levels. You will still be required to grade other levels.</p>
+    <% 1.upto(6) do |i| -%>
+      <p class="nobreak">
+        <%= check_box_tag "user[preferred_grade_level_form_hash][]", i.to_s, @user.preferred_grade_level_form_hash[i]  -%> Grade <%= GradeLevel.lex_kim_to_american(i) %></p>
+    <% end -%>
+<br />
+
+  <%= image_submit_tag 'signup_button.gif' %>
+<% end -%>

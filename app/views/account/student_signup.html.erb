@@ -1,0 +1,31 @@
+<%   title "Student Signup" %>
+<% if @errors and not @errors.empty? %>
+  <%= render :partial => '/shared/alerts/errors', :locals => {:header => 'There were errors creating your account.', :messages => @errors} %>
+<% end %>
+<% form_for :user, :html=> {:id => 'signup_form'} do |f| -%>
+
+  <p class="label"><label for="student_first_name">First Name</label></p>
+    <%= f.text_field :first_name, {:class=>'required inputfield',  :minlength=>"2"} %>
+
+  <p class="label"><label for="student_last_name">Last Name</label></p>
+    <%= f.text_field :last_name, {:class=>'required inputfield', :minlength=>"2"} %>
+
+  <p class="label"><label for="student_email">Email</label></p>
+    <%= f.text_field :email, {:class=>'required email inputfieldnobreak'} %>
+<p class="smalltext">Note: <strong>yahoo.co.kr</strong> emails do <strong>not</strong> work.  Please use another email account or sign up for an account at:</p>
+<p><a href="http://www.gmail.com" target="_blank"><%= image_tag 'gmail_logo.gif' %></a>&nbsp;&nbsp;&nbsp;<a href="http://www.naver.com" target="_blank"><%= image_tag 'naver_logo.gif' %></a></p>
+
+  <p class="label"><label for="student_password">Password</label></p>
+    <%= f.password_field :password, :class=>'inputfield' %>
+
+  <p class="label"><label for="student_password_confirmation">Confirm Password</label></p>
+    <%= f.password_field :password_confirmation, :class=>'inputfield' %>
+
+  <p class="label"><label for="student_grade_level">Level</label></p>
+    <%= f.select :grade_level_form_value, ['Please select one', 1, 2, 3, 4, 5, 6], {}, :class=>'selectfield' %>
+
+  <p class="label"><label for="student_birth_date">Birth Date</label></p>
+    <%= content_tag(:div, f.date_select(:birth_date, {:start_year => Time.now.year-30, :end_year => Time.now.year, :include_blank => true}), :class=>'dateselectfield')  %>
+
+  <%= image_submit_tag 'signup_button.gif' %>
+<% end -%>

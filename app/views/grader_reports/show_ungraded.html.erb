@@ -1,0 +1,184 @@
+<script type="text/javascript">
+  var points = new Array();
+  var subtotals = new Array();
+  var total = <%= @report.total_points_earned %>;
+  <%
+cat = 0
+@report.grade_level.ptal_categories.each_pair do |category, value|  -%>
+  points[<%=cat%>] = new Array;
+  subtotals[<%=cat%>] = <%= @report.subtotal(category) %>;
+  <%
+  item = 0;
+     value[:task_items].each do |task_item|
+       original_graded_ptal_task_item = @report.graded_ptal_task_items_hashed_by_task_item[task_item]
+  -%>
+  points[<%=cat%>][<%=item%>] = <%= original_graded_ptal_task_item.nil? ? '0' : original_graded_ptal_task_item.points_earned.to_i%>;
+  <%
+item += 1
+end
+cat += 1
+ end %>
+
+  function update_totals(category, task_item, value) {
+    var oldValue = points[category][task_item];
+    points[category][task_item] = value;
+    subtotals[category] = subtotals[category] - oldValue + value;
+
+    total = total - oldValue + value;
+    $('#subtotal_' + category).text(subtotals[category]);
+    $('#total').text(total);
+  }
+
+  function replace_grader_doc_link_click_handler(event) {
+    $('#replace_grader_doc_section').html(<%= partial 'replace_grader_doc_section' %>);
+  }
+
+  jQuery(document).ready(function() {
+    $("#errors").hide();
+    $('#replace_grader_doc_link').click(replace_grader_doc_link_click_handler);
+  });
+
+</script>
+<%
+   @page_title = "Report on #{@report.book.title}"
+   grade_level = GradeLevel.lex_kim_to_american(@report.grade_level.level)
+-%>
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1><%= h @report.book.title %> by <%= h @report.book.author %> (by <%=h @report.student.first_name_last_initial%>, Grade <%= grade_level %>)</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+  <div class="ClearAll"></div>
+  <div class="AlertBox" id="top_alert_box">
+    <ul>
+      <% if @report.last_saved_by_grader_at %>
+        <%= render :partial => 'last_saved_alert' %>
+      <% end %>
+      <li class="grading last" id="book_info_alert">
+        <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+          <p>This book report must be graded by <strong><%= convert_date_time_full_month(@grader.tz.utc_to_local(@report.grading_due)) -%></strong>.</p>
+        </td></tr></table>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="FullColSection">
+  <h1>Book Report Assessment</h1>
+
+  <h3>Step 1: Download Student's Book Report</h3>
+  <%= link_to image_tag('downloadbookreport_button.gif', {:class => 'buttonbigbottomspace'}),{:action => :download_submitted_doc, :id => @report} %>
+</div>
+<%  form_for :report, @report, :html => { :multipart => true, :class => 'ajax_form' }, :url => { :action => :submit, :id => @report } do  |f|  -%>
+
+  <input type="hidden" id="hidden_field_submit_type" name="submit_type" />
+  <div class="FullColSection">
+    <h3>Step 2: Review Student's Selected Assignment</h3>
+	    <div class="AssignmentBox">
+	      <h4><%= @report.assignment_topic.name %></h4>
+	      <p><%= render :partial => "assignment_topics/#{@report.assignment_topic.name.downcase.gsub(' ', '_')}"%></p>
+	    </div>
+  </div>
+  <div class="FullColSection">
+    <h3>Step 3: Upload Marked Book Report</h3>
+	<div class="drop_down_component">
+	    <p class="drop_down_link "><%= image_tag 'orangearrow_right.gif', :class => 'orangearrow' %><span class="linkspaceleft"><strong class="linkcolor"><span class="show_hide_toggle">Show:</span> Marking Guide for Grading</strong></span></p>
+	    <div class="drop_down">
+	      <h4>Marking Guide</h4>
+	      <%= render :partial => ('resource_center/grader_resources/marking_guide')%>
+		  <%= image_tag 'hidebox_button.gif', :class => 'hide_box_button'%>
+	    </div>
+	  </div>
+    <div id="marked_book_report_section">
+      <% if @report.has_grader_doc? %>
+        <%= render :partial => "marked_report_section_present"%>
+      <% else %>
+          <%= f.file_field  :grader_doc, {:class=>'getstartedfilefield', :size=>'35'} %>
+		<p>Note: Be sure you have saved it as a Microsoft Word Document.</p>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="FullColSection">
+    <h3>Step 4: Grader's Comments</h3>
+    <p>Use the form below to write comments for the student.</p>
+    <%= f.text_area :grader_comment, {:value => @report.grader_comment, :class => 'CommentsBoxWriting'} %>
+  </div>
+
+  <div class="FullColSection">
+    <h3>Step 5: Performance Breakdown</h3>
+    <table cellpadding="0" cellspacing="0" class="PerformanceTable">
+      <%
+         cat = 0
+         @report.grade_level.ptal_categories.each_pair do |category, value|
+           item = 0
+      %>
+        <tr>
+          <td class="Col1Header"><h4><%= category %></h4></td>
+          <td class="Col2Header"><p>Possible Points</p></td>
+          <td class="Col2Header"><p>Student's Score</p></td>
+        </tr>
+        <%
+           odd_row = true
+           task_item_number = 0
+           value[:task_items].each do |task_item|
+             task_item_number += 1
+             list = ['']
+             0.upto(task_item.possible_points) do |i|
+               list << i.to_s
+             end
+             original_graded_ptal_task_item = @report.graded_ptal_task_items_hashed_by_task_item[task_item]
+             fields_for "graded_ptal_task_item_#{task_item.id}", @report.graded_ptal_task_items_hashed_by_task_item[task_item] do |graded_ptal_task_item|
+        %>
+            <tr class="<%= odd_row ? 'OddRow' : 'EvenRow'  %>">
+              <td class="Col1"><p><%= task_item_number %>. <%= task_item.description %></p></td>
+              <td class="Col2"><p><%= task_item.possible_points %></p></td>
+              <td class="Col2">
+                <%= graded_ptal_task_item.select(:points_earned, list, { },
+                    {:class =>'selectfield', :onchange => "update_totals(#{cat}, #{item}, value == '' ? 0 : parseInt(value)) " } ) -%>
+              </td>
+            </tr>
+          <%
+             end
+             odd_row = odd_row ? false : true
+             item += 1
+             end
+          %>
+        <tr class="SubtotalRow">
+          <td class="Col1SubTotal"><p><strong>Subtotal</strong></p></td>
+          <td class="Col2SubTotal"><h5><%= value[:possible_points_subtotal] %></h5></td>
+          <td class="Col2SubTotal"><h5 id="subtotal_<%=cat%>"><%= @report.subtotal(category) %></h5></td>
+        </tr>
+        <tr class="BreakRow"></tr>
+      <%
+         cat += 1
+         end %>
+      <tr class="TotalRow">
+        <td class="Col1Total" colspan="2"><p><strong>Total Score</strong></p></td>
+        <td class="Col2Grade"><h5><span  id="total"><%= @report.total_points_earned %></span>/<%=  @report.grade_level.total_possible_points %></h5></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="ButtonLeft"><%= image_submit_tag 'saveandfinishlater_button.gif', { :name => "save_and_finish_later", :onclick=>"$('#hidden_field_submit_type').val('save_and_finish_later')" }%></div>
+  <%= image_submit_tag 'nextstep_button.gif', { :name => "submit_and_preview", :onclick=>"$('#hidden_field_submit_type').val('submit_and_preview')" } %><br /><br />
+  <script type="text/javascript">
+    $(".ajax_form").ajaxForm({
+      dataType: 'script',
+      beforeSubmit: function(xhr) {
+        $('.ErrorMessage').html(<%= partial '/shared/loading' %>  );
+        $('.ErrorMessage').show();
+        window.scroll(0,document.body.scrollHeight);
+      }
+      , error: function() {
+      $('.ErrorMessage').html("<h1>There was an error</h1>");
+      $('.ErrorMessage').show();
+    }
+
+    });
+  </script>
+  <div class="ErrorMessage"></div>
+  <div class="ClearAll"></div>
+  <div id="errors"></div>
+<% end %>

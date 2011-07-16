@@ -1,0 +1,55 @@
+<div id="FullCol">
+  <div class="FullColSection">
+    <div id="FullColLeft">
+      <h1><%= h(sub_page_title) %></h1>
+    </div>
+    <div id="FullColRight">
+      <p><%= top_right_link %></p>
+    </div>
+    <div class="ClearAll"></div>
+    <div class="AlertBox">
+      <ul>
+        <li class="graded">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+            <p>This report was graded on <%= convert_date_full_month(current_user.tz.utc_to_local(@report.graded_at)) %></p>
+          </td></tr></table>
+        </li>
+        <li class="grade last">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31">
+            <td><h1 class="BigGrade"><%= @report.final_grade %></h1></td>
+            <td>
+              <p class="nobreak"><%= is_administrator? ? "Grader #{@report.grader.full_name}" : 'You' %> <%= is_student? ? 'scored' : 'gave the student' %>
+                <strong><%= @report.total_points_earned %> points out of <%= @report.grade_level.total_possible_points %></strong>
+                possible points for a grade of <%= @report.final_grade %>.
+              </p>
+            </td></tr></table>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="FullColSection">
+    <h1>Book Report Assessment</h1><br/>
+    <h3>Selected Book Report Assignment</h3>
+    <div class="AssignmentBox">
+      <h4><%= @report.assignment_topic.name %></h4>
+      <p><%= render :partial => "assignment_topics/#{@report.assignment_topic.name.downcase.gsub(' ', '_')}"%></p>
+    </div>
+  </div>
+  <div class="FullColSection">
+
+    <%= render :partial => "/shared/reports/swf_report" %>
+    <%= link_to "#{image_tag 'downloadgraded_button.gif', {:class=>'buttonbottomspace'}}", {:action => :download_graded_pdf, :id => @report} %>
+    <p><%= link_to "Download #{is_student? ? 'your' : 'the'} original submitted book report.", :action => :download_submitted_doc, :id => @report %></p>
+  </div>
+
+  <div class="FullColSection">
+    <h3><%= is_grader? ? 'Your' : "Grader's" %> Comments</h3>
+    <div class="CommentsBox">
+      <%= substitute_paragraphs(@report.grader_comment) %>
+    </div>
+  </div>
+  <h3>Performance Breakdown</h3>
+  <p>The following is a breakdown of <%= is_student? ? 'your' : 'the' %> book report grade.</p>
+  <%= render(:partial => 'shared/graded_ptal') %>
+  <div><%= image_tag 'returntotop_button.gif', { :class=>"top_link linkcolor"} %></div>
+</div>

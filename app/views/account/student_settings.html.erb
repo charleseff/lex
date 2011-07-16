@@ -1,0 +1,66 @@
+<% title "Account Settings" %>
+<% if @errors and not @errors.empty? %>
+  <%= render :partial => '/shared/alerts/errors', :locals => {:header => 'There were errors saving your settings.', :messages => @errors} %>
+<% end %>
+
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h2>Update Account Settings</h2>
+  </div>
+  <div id="FullColRight">
+    <p class="smalltext"><%= link_to 'Return to Home', root_path %></p>
+  </div>
+</div>
+
+<% if @update_notice -%>
+  <div class="FullColSection">
+    <h1 class="BigMessage"><%= @update_notice %></h1>
+  </div>
+<% end -%>
+
+<div class="FullColSection">
+  <h3>Personal Information</h3>
+  <% form_for :current_user do |f| -%>
+
+    <p class="label"><label for="first_name">First Name</label></p>
+    <%= f.text_field :first_name, :class=>'inputfield' %>
+
+    <p class="label"><label for="last_name">Last Name</label></p>
+    <%= f.text_field :last_name, :class=>'inputfield' %>
+
+    <p class="label"><label for="grade_level">Level</label></p>
+    <%= f.select :grade_level_form_value, %w{1 2 3 4 5 6}, {}, :class=>'selectfield' %>
+
+    <p class="label"><label for="birth_date">Birth Date</label></p>
+    <%= content_tag(:div, f.date_select(:birth_date, {:start_year => Time.now.year-30, :end_year => Time.now.year}), :class=>'dateselectfield')  %>
+
+    <p class="label"><label for="time_zone" >Select your time zone:</label></p>
+    <%= f.time_zone_select :time_zone, TZInfo::Timezone.all.sort, {:model => TZInfo::Timezone},{:class=>'inputfield'}%>
+
+    <p><%= image_submit_tag 'changepersonalinformation_button.gif' %></p>
+  <% end -%>
+</div>
+
+<div class="FullColSection">
+  <h3>Change Email Address</h3>
+  <% form_for :current_user, :url => {:action => :change_email_request} do |f| -%>
+    <p class="label"><label for="email">Email</label></p>
+    <%= f.text_field :email, :class=>'inputfield' %>
+    <p><%= image_submit_tag 'changeemailaddress_button.gif' %></p>
+  <% end -%>
+</div>
+
+<div class="FullColSection">
+  <h3>Change Password</h3>
+  <% form_for :current_user, :url => {:action => :change_password} do |f| -%>
+
+    <p class="label"><label for="password">Password</label></p>
+    <%= f.password_field :password, :class=>'inputfield' %>
+
+    <p class="label"><label for="password_confirmation">Confirm Password</label></p>
+    <%= f.password_field :password_confirmation, :class=>'inputfield' %>
+
+    <p><%= image_submit_tag 'changepassword_button.gif' %></p>
+  <% end -%>
+
+</div>

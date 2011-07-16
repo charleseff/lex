@@ -1,0 +1,379 @@
+body {
+	margin: 0;
+	padding: 0px 0 25px 0;
+	font-family: Arial, verdana, sans-serif;
+	color: #ffffff;
+	position: relative;
+	background: #788F9B; }
+
+/* Normal links */
+a:link, a:visited {
+outline-style:none;
+	color: #8a1d04;
+	 }
+
+a:hover, a:visited:hover {
+	color: #aeaeae; }
+
+/* Image border and background color fixes */
+a.img:link, a.img:visited, a.img:hover, a.img:visited:hover {
+	border: none;
+	background-color:transparent; }
+
+/* Abbreviations */	
+abbr { border-bottom: 1px dotted #900; cursor: help; }
+
+
+/*------------------HEADING--------------------*/
+
+h1 {
+	margin: 16px 0 0 0;
+	padding: 0 0 5px 0;
+	font-size: 20px;
+	font-weight: normal;
+	color: #b80e1f; }
+
+h1 span { color: #666;font-size:0.5em;vertical-align:0.2em }
+
+h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+	font-weight: normal;
+	color: #390; }
+
+h3 {
+	margin: 0px 0px 5px 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 13px;
+	font-weight: bold;
+	line-height:15px;
+	color: #000; }
+
+h4 {
+	margin: 0 0 5px 0;
+	padding: 0;
+	font-size: 12px;
+	font-weight: bold;
+	color: #390; }
+	
+h5 {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 10px;
+	font-weight: normal;
+	color: #069;
+	}
+
+h6 {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #600; }
+
+/*-----------PARAGRAPH TEXT ELEMENTS-------------------*/
+
+/* General paragraph rules */
+p {
+	margin: 0 0 1.0em 0;
+	padding: 0;
+	font-size: 12px;
+	line-height: 1.4em; }
+
+/*/*/a{}
+body p {
+	font-size: x-small;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	font-size: small; }
+  
+html>body p { font-size: small; }
+/* */
+
+p.oldbrowsers {
+	margin: 0px 0px 20px 0px;
+	padding: 0px 0px 0px 0px;
+	color: #c00; }
+
+blockquote {
+	display: block;
+	margin: 0px 0px 20px 0px;
+	padding: 0px 30px;
+	font-size:11px;
+	line-height:17px;
+	color: #666; }
+	
+	
+/*------------------FORMS----------------*/
+
+input.txt, textarea.txt {
+	font-family: georgia, times, serif;
+	font-size: 11px;
+	color: #333; }
+
+select {
+	font-size: 11px; }
+
+form {
+	display: block;
+	margin: 0px;
+	padding: 0px; }
+	
+.textfieldarea {
+	float: left;
+	border: 1px solid #848484;
+	margin: 5px 0 5px 0;
+}
+
+/*--------------MISCELLANEOUS----------------*/
+
+img { border: none; }
+hr { display: none; }
+
+/* Outer bounding box for all pages */
+#Frame {
+	margin: 50px auto 0px auto;
+	padding: 0px;
+	background: #ffffff;
+	border: 10px solid #124866;
+	width: 450px; }
+
+/* Basic header style applied to H1 element */
+/* Phark Image Replacement Technique */
+#Header {
+	float: left;
+	position: relative;
+	margin:0px 0 0px 0px;
+	padding:15px 0px 5px 20px;
+	width: 430px;
+	height: 50px;
+	background: #124866;
+	}
+
+
+
+/*---------------LAYOUT BOXES----------------------*/
+
+/* 2-column layout container */
+#Content {
+	margin: 0px 0 0 0;
+	padding: 0px 20px 0px 20px;
+	text-align: left;
+	background: #124866;
+	}
+
+#FullCol{
+	float: left;
+	width: 400px;
+	padding: 20px 0 30px 10px;
+	margin: 0 0 0px 0;
+	background: #ffffff;
+}
+
+#FullColLeft {
+	float: left;
+	width: 300px;
+}
+
+#FullColRight {
+	float: right;
+	padding: 13px 0 0 0;
+}
+.FullColSection {
+  float: left; 
+  width: 390px;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0 0 10px 0;
+  margin: 0 0 15px 0;
+}/*---------------------Misc-----------------------*/
+
+.inputfield {
+	border: 1px solid #939393;
+	width: 380px;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 20px;
+	padding: 3px;
+	margin: 1px 0 20px 0;
+}
+
+.inputfieldnobreak {
+	border: 1px solid #939393;
+	width: 380px;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 20px;
+	padding: 3px;
+	margin: 1px 0 5px 0;
+}
+
+.inputforgotfield {
+	border: 1px solid #AAAAAA;
+	width: 250px;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 12px;
+	padding: 3px;
+	margin: 0px 10px 0px 0;
+}
+
+.selectfield {
+	border: 1px solid #939393;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 20px;
+	padding: 3px;
+	margin: 1px 0 20px 0;
+}
+
+.dateselectfield select{
+	border: 1px solid #939393;
+	font-family: Arial, verdana, sans-serif;
+	font-size: 20px;
+	padding: 3px;
+	margin: 1px 0 20px 0;
+}.ButtonLeft {
+	float: left;
+	width: 120px;
+	padding: 0 20px 0 0;
+}
+
+.ForgotPassword {
+	float: left;
+	padding: 10px 0 0 0;
+}
+
+.AlertBoxRed {
+  padding: 13px 13px 13px 16px;
+  margin: 20px 0 20px 0;
+  background: #fadee2;
+  border: 1px solid #B50938;
+  text-align: left;
+}
+
+#BodyText .AlertBoxRed h5 {
+  padding: 0px 0px 0px 0px;
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #B50938; }
+
+#BodyText .AlertBoxRed ul {
+  list-style-type: disc;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 17px;
+  color: #B50938;
+  padding: 0px 0px 0px 0px;
+  margin: 0 0 0px 20px;
+
+}
+
+#BodyText .AlertBoxRed li {
+  list-style-type: disc;
+  padding: 0 0 5px 0;
+}
+/*-------------------BodyText-----------------------*/
+#BodyText{
+	margin: 0px 0px 0px 0px;
+	padding: 0 0px 0px 0px;
+	float: left;
+}
+#BodyText img{
+	padding: 0px;
+}
+#BodyText p {
+	padding: 0px 0px 20px 0px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 20px;
+	color: #3F3F3F; 
+}
+
+#BodyText p.nobreak {
+	padding: 0px 0px 6px 0px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 20px;
+	color: #3F3F3F; 
+}
+#BodyText p.smalltext {
+	padding: 0px 0px 20px 0px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 14px;
+	color: #3F3F3F; 
+}
+
+#BodyText p.label {
+	padding: 5px 0px 5px 0px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 16px;
+	color: #3F3F3F; 
+}
+
+#BodyText h1 {
+	padding: 0px 0px 25px 0px;
+	margin: 0;
+	font-size: 24px;
+	line-height: 29px;
+	font-weight: bold;
+	color: #666666; }
+	
+#BodyText h1.ErrorMessage {
+	padding: 0px 0px 25px 0px;
+	margin: 0;
+	font-size: 24px;
+	line-height: 29px;
+	font-weight: bold;
+	color: #B50938; }
+	
+#BodyText h2 {
+	padding: 10px 0px 13px 0px;
+	margin: 0;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #3F3F3F; 
+}
+#BodyText h3 {
+	padding: 10px 0px 13px 0px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 16px;
+	color: #124866; 
+}
+#BodyText h5 {
+	padding: 0px 0px 1px 0px;
+	margin: 0;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 15px;
+	color: #455560; }
+	
+#BodyText h6 {
+	padding: 0px 0px 1px 0px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 14px;
+	color: #4d4d4d; 
+}
+#BodyText a:link, #BodyText a:visited { color: #CC4509; text-decoration: underline;}
+#BodyText a:hover, #BodyText a:visited:hover { color: #124866;text-decoration: underline; }
+
+/* Remove traces of float */	
+.ClearAll {
+	clear: both;
+	font-size: 2px; }
+
+/* Hide warning from newer browsers */
+.oldbrowsers { display: none; }
+
+td.nowrap {
+	white-space: nowrap;
+	}

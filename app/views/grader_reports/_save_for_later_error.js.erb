@@ -1,0 +1,7 @@
+$('.ErrorMessage').hide();
+$('#errors').hide();
+$('#errors').html(<%= partial '/shared/alerts/errors', :locals => {:header => 'There were errors saving your report', :messages => @errors} %>);
+//$('#large_status_message').fadeIn('show');
+
+$('#errors').fadeIn('slow');
+window.scroll(0,document.body.scrollHeight);

@@ -1,0 +1,9 @@
+new_student_passcode:
+  id: 1
+  k: new_student_passcode
+  v: <%= Digest::SHA1.hexdigest("passcode") %>
+
+new_grader_passcode:
+  id: 2
+  k: new_grader_passcode
+  v: <%= Digest::SHA1.hexdigest("passcode") %>

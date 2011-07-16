@@ -1,0 +1,181 @@
+<% title 'Sample Report' %>
+<div class="FullColSection">
+  <div id="FullColLeft">
+
+    <table cellpadding="0" cellspacing="0"><tr valign="top"><td width="62"><%= image_tag 'sample_tag.gif' %></td><td><h1>Matilda by Roald Dahl</h1></td></tr></table>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+  <div class="ClearAll"></div>
+  <div class="AlertBox">
+    <ul>
+
+      <li class="graded last">
+        <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+          <p>This is a sample book report from Grade Level 2. It received a grade of <strong>B-</strong>.</p>
+        </td></tr></table>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<div class="FullColSection">
+  <h1>Book Report Assessment</h1>
+</div>
+<div class="FullColSection">
+  <h3>Selected Book Report Assignment</h3>
+  <div class="AssignmentBox">
+    <h4>Book Review</h4>
+
+    <p>In this essay, you will be giving your expert opinion about a book you’ve read: did you enjoy reading the story? Or maybe some parts kept you interested and other parts didn’t?  What about the book shaped your opinion about it?  The reader of your essay wants to know what you have to say about what you’ve read.
+    </p>
+  </div>
+</div>
+<div class="FullColSection">
+  <h3>Download Book Report</h3>
+  <%= link_to "#{image_tag 'downloadgraded_button.gif', {:class=>'buttonbottomspace'}}",
+      :action => :sample_report_pdf , :id => 'OliviaK_Matilda_graded' %>
+</div>
+<div class="FullColSection">
+
+  <h3>Grader's Comments</h3>
+  <div class="CommentsBox">
+    <p>I enjoyed reading your book report! The two areas that you need to work on are finding examples from the story to support your supporting ideas and getting right to the gist of your plot summary (no more than 5 sentences!). Also, make sure to keep a consistent tense throughout your essay. I know this seems difficult, but this will come easier to you as you continue to write. Keep reading and writing!</p>
+  </div>
+</div>
+<h3>Performance Breakdown</h3>
+<p>The following is a breakdown of the book report grade.</p>
+
+<table cellpadding="0" cellspacing="0" class="PerformanceTable">
+
+<tr>
+  <td class="Col1Header"><h4>A. Structure</h4></td>
+  <td class="Col2Header"><p>Student's Score</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>1. Includes an appropriate title</p></td>
+
+  <td class="Col2"><p>0/1</p></td>
+</tr>
+
+<tr class="EvenRow">
+  <td class="Col1"><p>2. Essay is divided into five paragraphs: an introduction, a plot summary, two supporting paragraphs, and a conclusion</p></td>
+  <td class="Col2"><p>5/5</p></td>
+</tr>
+
+<tr class="SubtotalRow">
+
+  <td class="Col1SubTotal"><p><strong>Subtotal</strong></p></td>
+  <td class="Col2SubTotal"><h5>5/6</h5></td>
+</tr>
+<tr class="BreakRow"/>
+
+<tr>
+  <td class="Col1Header"><h4>B. Content</h4></td>
+  <td class="Col2Header"><p>Student's Score</p></td>
+
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>1. Introduction provides a brief overview of the story</p></td>
+  <td class="Col2"><p>2/2</p></td>
+</tr>
+
+<tr class="EvenRow">
+  <td class="Col1"><p>2. Student’s thesis is clear and original and expresses his or her opinion about the book</p></td>
+
+  <td class="Col2"><p>4/4</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>3. Plot summary captures the important story elements without going into too much detail</p></td>
+  <td class="Col2"><p>1/3</p></td>
+</tr>
+
+<tr class="EvenRow">
+
+  <td class="Col1"><p>4. Supporting paragraphs have clear topic sentences that provide a focus for the paragraph</p></td>
+  <td class="Col2"><p>4/4</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>5. Supporting paragraphs discuss specific examples from the story (2-3 for each paragraph)
+  </p></td>
+  <td class="Col2"><p>5/8</p></td>
+</tr>
+
+
+<tr class="EvenRow">
+  <td class="Col1"><p>6. Conclusion restates the thesis and summarizes the supporting paragraphs</p></td>
+  <td class="Col2"><p>3/3</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>7. Conclusion recommends the book to a specific group of readers</p></td>
+  <td class="Col2"><p>0/1</p></td>
+
+</tr>
+
+<tr class="SubtotalRow">
+  <td class="Col1SubTotal"><p><strong>Subtotal</strong></p></td>
+  <td class="Col2SubTotal"><h5>19/25</h5></td>
+</tr>
+<tr class="BreakRow"/>
+
+<tr>
+  <td class="Col1Header"><h4>C. Style and Mechanics</h4></td>
+
+  <td class="Col2Header"><p>Student's Score</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>1. Student writes in complete sentences (avoids run-ons and fragments)</p></td>
+  <td class="Col2"><p>6/6</p></td>
+</tr>
+
+<tr class="EvenRow">
+
+  <td class="Col1"><p>2. Student’s use of punctuation is correct and appropriate</p></td>
+  <td class="Col2"><p>6/6</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>3. Student’s word choice is thoughtful and accurate</p></td>
+  <td class="Col2"><p>2/3</p></td>
+</tr>
+
+
+<tr class="EvenRow">
+  <td class="Col1"><p>4. Student correctly capitalizes words</p></td>
+  <td class="Col2"><p>2/2</p></td>
+</tr>
+
+<tr class="OddRow">
+  <td class="Col1"><p>5. Student maintains a consistent tense (the present tense) throughout the work</p></td>
+  <td class="Col2"><p>0/2</p></td>
+
+</tr>
+
+<tr class="SubtotalRow">
+  <td class="Col1SubTotal"><p><strong>Subtotal</strong></p></td>
+  <td class="Col2SubTotal"><h5>16/19</h5></td>
+</tr>
+<tr class="BreakRow"/>
+
+
+<tr class="TotalRow">
+  <td class="Col1Total"><p><strong>Total Score</strong></p></td>
+
+  <td class="Col2Grade"><h5>40/50</h5></td>
+</tr>
+<tr class="BreakRow"></tr>
+<tr class="TotalRow">
+  <td class="Col1Total"><p><strong>Grade Based on Score</strong></p></td>
+  <td class="Col2Grade"><h5>B-</h5></td>
+</tr>
+
+</table>
+
+<div><%= image_tag 'returntotop_button.gif', { :class=>"top_link linkcolor"} %></div>

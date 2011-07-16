@@ -1,0 +1,16 @@
+<% title "Login" %>
+<% form_tag do -%>
+  <p class="label">E-Mail Address:</p>
+  <%= text_field_tag :email ,{}, :class=>'inputfield'%>
+  <p class="label">Password:</p>
+  <%= password_field_tag :password,{}, :class=>'inputfield' %>
+  <p>Remember me: <%= check_box_tag 'remember_me' %></p>
+
+  <div class="ButtonLeft">
+    <%= image_submit_tag 'login_button.gif', :id=>'login_button' %>
+  </div>
+  <div class="ForgotPassword">
+    <p class="smalltext"><%= link_to 'Forgot your Password?', {:action => :forgot_password} %></p>
+  </div>
+<% end %>
+

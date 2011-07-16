@@ -1,0 +1,2 @@
+module ResourceCenter::StudentHelper
+end

@@ -1,0 +1,12 @@
+<div class="FullColSection">
+	<div id="FullColLeft">
+		<h1>Marking Guide</h1>
+	</div>
+	<div id="FullColRight">
+		<p><%= link_to 'Return to Resource Center', grader_resource_center_path %></p>
+	</div>
+</div>
+<div class="FullColSection">
+<%= render :partial => ('resource_center/grader_resources/marking_guide')%>
+</div>
+<div><%= image_tag 'returntotop_button.gif', { :class=>"top_link linkcolor"} %></div>

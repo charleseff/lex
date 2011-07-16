@@ -1,0 +1,8 @@
+--- 
+cwd: /home/deploy/public_html/lexkimbookreports.cmanfu.com
+log_file: log/mongrel.log
+port: "8001"
+environment: staging
+address: 127.0.0.1
+pid_file: tmp/pids/mongrel.pid
+servers: 1

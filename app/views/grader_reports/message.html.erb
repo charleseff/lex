@@ -1,0 +1,15 @@
+<% title "Send a comment to the student about report on #{@report.book.title}" %>
+
+<h3>Report on <i><%=@report.book.title%></i> by <%=@report.book.author%></h3>
+
+<p>Talk to the student: (make a comment, etc etc)</p>
+<% form_for( :dialog_message ,  :url => { :action => :send_message, :id => @report }, :html => { :multipart => true }) do |f| -%>
+
+  <p><label for="message">Message</label><br/>
+      <%= f.text_area :message, :rows => 3 %></p>
+
+  <p>
+      <%= submit_tag 'Send message' %>
+  </p>
+<% end -%>
+<p><%= link_to 'Back to report', {:action =>:show, :id => @report} %> </p>

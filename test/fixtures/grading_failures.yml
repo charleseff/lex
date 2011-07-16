@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  report: bobby_report_no_grader
+  grader: sean
+
+two:
+  report: bobby_report_no_grader
+  grader: kate

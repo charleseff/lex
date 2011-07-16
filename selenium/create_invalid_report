@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>create_invalid_report</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create_invalid_report</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/account/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email</td>
+	<td>test_lex_student@barrelny.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>barrel</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@type='image']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>book_title</td>
+	<td>foo</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>book_author</td>
+	<td>stuff</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>assignment_topic_id</td>
+	<td>label=Option 2: Settings</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@type='image']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>ajax_update</td>
+	<td>There were errors with your report.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>ajax_update</td>
+	<td>There were errors with your report.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/div/ul/li</td>
+	<td>Submitted document must be in microsoft word format</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

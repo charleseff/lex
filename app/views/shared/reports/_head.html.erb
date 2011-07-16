@@ -1,0 +1,23 @@
+<%
+   if is_student?
+     image = (not report.graded?) ? 'bookreportungradedblue_icon.gif' :
+             report.active?  ? 'bookreportgradedblue_icon.gif' :
+                     'bookreportarchived_icon.gif'
+   else
+     image = (not report.graded?) ? 'bookreportungradedgreen_icon.gif' :
+             report.active?  ? 'bookreportgradedgreen_icon.gif' :
+                     'bookreportarchived_icon.gif'
+   end
+
+%><div class="FullColSectionHead">
+<div class="FullColSectionHeadLeftIcon">
+  <%= image_tag image %>
+</div>
+<div class="FullColSectionHeadLeft">
+  <h2><%=report.book.title%> by <%= report.book.author %></h2>
+</div>
+<div class="FullColSectionHeadRight">
+  <h6><%= link_to "#{image_tag(is_student? ? 'home_icon.gif' : 'homegreen_icon.gif')}&nbsp;&nbsp;RETURN TO HOME" ,
+          :controller=>:home, :action=>:index %></h6>
+</div>
+</div>

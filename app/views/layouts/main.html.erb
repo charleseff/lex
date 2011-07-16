@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Lex Kim Book Reports :: <%= h(@page_title) %></title>
+  <%= stylesheet_link_tag is_student?  ? 'main_student.css' : is_grader? ? 'main_grader.css' : 'main_administrator.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'main.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'shared.css' %>
+  <%= javascript_include_tag  (ENV['RAILS_ENV'] == 'development' ? 'jquery-1.2.3.js' : 'jquery-1.2.3.min.js') %>
+  <%= javascript_include_tag 'jquery.rotate.1-1.js' %>
+  <%= javascript_include_tag 'jquery.delegate.js' %>
+  <%= javascript_include_tag 'jquery.form.js' %>
+  <%= javascript_include_tag 'main.js' %>
+</head>
+
+<body>
+<a name="top"/>
+<div id="Frame">
+  <div id="Header">
+    <div id="Logo"><%= link_to (image_tag  (is_student? or is_administrator?) ? 'header.gif' : 'header_grader.gif'), root_path %></div>
+    <div id="HeaderRight">
+      <h6>Logged in as <%= h(current_user.first_name) %> <%= h(current_user.last_name) %> | <%= link_to 'Log-out', :controller => '/account', :action => :logout%></h6>
+    </div>
+    <ul id="navigation">
+      <% if (is_student? or is_grader?) %>
+        <li id="nav_welcome"><%= link_to 'Welcome!', root_path, {:class=> @section == 'home' ? 'selected' : ''} %></li>
+        <li id="nav_bookreports"><%= link_to 'Book Reports', {:controller => is_student? ? '/student_reports' : '/grader_reports', :action => :index },  {:class=> @section == 'reports' ? 'selected' : ''}%></li>
+        <li id="nav_resourcecenter"><%= link_to 'Resource Center', {:controller => "/resource_center/#{current_user.class.to_s.downcase}"},  {:class=> @section =~ /resource_center/ ? 'selected' : ''} %></li>
+        <li id="nav_help"><%= link_to 'Help', {:controller => '/help', :action => :index},  {:class=> @section == 'help' ? 'selected' : ''} %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="ClearAll"></div>
+  <div id="Content">
+    <div id="BodyText">
+      <div id="FullCol">
+
+        <% if flash[:notice] -%>
+          <h1 class="BigMessage"><%= flash[:notice] %></h1>
+        <% end -%>
+        <% if flash[:error] -%>
+          <%= render :partial => 'shared/alerts/error', :locals => {:header => '', :message => flash[:error]}  %>
+        <% end -%>
+
+        <%= yield  %>
+
+      </div>
+    </div>
+    <div class="ClearAll"></div>
+  </div>
+</div>
+<!-- COPYRIGHT -->
+
+<% cache 'main_tail' do %>
+  <div id="Copyright">
+    <div id="CopyrightLeft">
+      <% unless is_administrator? %>
+        <h4><%= link_to 'GET HELP', {:controller => '/help', :action => :index},  {:class=> @section == 'help' ? 'selected' : ''} %> | <%= link_to 'CHANGE MY ACCOUNT INFORMATION', :controller => '/account', :action => :settings %></h4>
+      <% end %>
+    </div>
+    <div id="CopyrightRight">
+      <h5>&#169; <%=Time.now.year%> Lex Kim English School</h5>
+    </div>
+    <div class="ClearAll"></div>
+  </div>
+
+  <%= (google_analytics = yield :google_analytics) ? google_analytics : render(:partial => 'shared/google_analytics') %>
+
+<% end %>
+
+</body>
+</html>
+

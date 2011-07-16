@@ -1,0 +1,9 @@
+Hello from Lex Kim,
+
+You have approximately <%= @report.hours_left_before_grading_due.to_i %> hours left to grade the report assigned to you.  The due date for this report is <%= @report.grader.tz.utc_to_local(@report.grading_due).strftime('%B %d, %Y %l:%M%p') %>
+
+You can access the report to be graded by clicking below:
+<%=APP_CONFIG['lexkimbookreports_home'] %>/grader_reports/show/<%=@report.id%>
+
+Thanks,
+Lex Kim English School

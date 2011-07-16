@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Lex Kim Book Reports :: <%= h(@page_title) %></title>
+  <%= stylesheet_link_tag is_student? ? 'main_student.css' : 'main_grader.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'main.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'shared.css' %>
+  <%= javascript_include_tag  (ENV['RAILS_ENV'] == 'development' ? 'jquery-1.2.3.js' : 'jquery-1.2.3.min.js') %>
+  <%= javascript_include_tag 'jquery.rotate.1-1.js' %>
+  <%= javascript_include_tag 'jquery.delegate.js' %>
+  <%= javascript_include_tag 'jquery.form.js' %>
+  <%= javascript_include_tag 'main.js' %>
+</head>
+<body>
+<a name="top"/>
+<div id="Frame">
+  <div id="Header">
+    <div id="Logo"><%= link_to (image_tag  @current_user.is_a?(Student) ? 'header.gif' : 'header_grader.gif'), root_path %></div>
+    <div id="HeaderRight">
+      <h6>Logged in as <%= current_user.first_name %> <%= current_user.last_name %> | <%= link_to 'Log-out', :controller => :account, :action => :logout%></h6>
+    </div>
+    <ul id="navigation">
+      <li id="nav_welcome"><%= link_to 'Welcome!', root_path, {:class=> @section == 'home' ? 'selected' : ''} %></li>
+      <li id="nav_bookreports"><%= link_to 'Book Reports', {:controller => is_student? ? :student_reports : :grader_reports, :action => :index },  {:class=> @section == 'reports' ? 'selected' : ''}%></li>
+      <li id="nav_resourcecenter"><%= link_to 'Resource Center', {:controller => "/resource_center/#{current_user.class.to_s.downcase}"},  {:class=> @section =~ /resource_center/ ? 'selected' : ''} %></li>
+    </ul>
+  </div>
+  <div class="ClearAll"></div>
+
+   
+
+        <% if flash[:notice] -%>
+          <div class="AlertBoxGreen">
+            <h6><%= flash[:notice] %></h6>
+          </div>
+        <% end -%>
+        <% if flash[:error] -%>
+          <%= render :partial => 'shared/alerts/error', :locals => {:header => 'Error grading report', :message => flash[:error]}  %>
+        <% end -%>
+
+        <%= yield  %>
+
+     
+ 
+</div>
+<!-- COPYRIGHT -->
+<div id="Copyright">
+  <h5>&#169; <%=Time.now.year%> Lex Kim English School</h5>
+  <div class="ClearAll"></div>
+</div>
+
+<%= (google_analytics = yield :google_analytics) ? google_analytics : render(:partial => 'shared/google_analytics') %>
+
+</body>
+</html>

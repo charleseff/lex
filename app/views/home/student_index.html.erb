@@ -1,0 +1,153 @@
+<% title "Home - #{@student.first_name} #{@student.last_name}"-%>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    $('#errors').hide();
+    $('.ErrorMessage').hide();
+    // removed:
+    /*
+        $('.submit_button').click( function() {
+          $(this).attr("disabled","disabled");
+          $(this).fadeTo("fast", 0.25);
+        });
+    */
+  });
+</script>
+
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1>Hello, <%= h @student.first_name %>!</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'View My Account Settings', :controller => :account, :action => :settings %></p>
+  </div>
+
+  <%
+     reports_to_show_size = @student.reports_not_assigned_to_a_grader.length + @student.reports_assigned_to_a_grader_but_ungraded.length
+     reports_to_show_size += 1 if @student.most_recently_graded_active_report
+     if reports_to_show_size > 0
+       report_number = 0
+  -%>
+    <div class="ClearAll"></div>
+    <div class="AlertBox">
+      <ul>
+        <%
+           if not @student.reports_not_assigned_to_a_grader.empty?
+             @student.reports_not_assigned_to_a_grader.each do |report|
+               report_number += 1
+        %>
+            <li class="grading<%= report_number == reports_to_show_size ? ' last' : ''%>">
+              <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+                <p>Your book report on <%= link_to "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)}</strong>", { :controller => :student_reports, :action => :show, :id => report } %> has been submitted.</p>
+              </td></tr></table>
+            </li>
+          <%     end  %>
+        <%   end
+             if not @student.reports_assigned_to_a_grader_but_ungraded.empty?
+               @student.reports_assigned_to_a_grader_but_ungraded.each do |ungraded_report|
+                 report_number += 1
+        %>
+            <li class="grading<%= report_number == reports_to_show_size ? ' last' : ''%>">
+              <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+                <p>Your book report on <%= link_to "<strong><em>#{h(ungraded_report.book.title)}</em> by #{h(ungraded_report.book.author)}</strong>", { :controller => :student_reports, :action => :show, :id => ungraded_report } %> is currently being graded.</p>
+              </td></tr></table>
+            </li>
+          <%  end %>
+        <%
+           end
+           if @student.most_recently_graded_active_report
+             report = @student.most_recently_graded_active_report
+             report_number += 1
+        %>
+          <li class="graded<%= report_number == reports_to_show_size ? ' last' : ''%>">
+            <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+              <p>Your book report on <%= link_to  "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)}</strong>", { :controller => :student_reports, :action => :show, :id => report } %> has been graded.
+                <%= link_to  "View your graded report.", { :controller => :student_reports, :action => :show, :id => report } %></p>
+            </td></tr></table>
+          </li>
+        <%  end %>
+      </ul>
+    </div>
+  <% end %>
+
+</div>
+<div>
+
+  <div class="FullColSection">
+    <h3>Get Started</h3>
+    <div class="GetStartedBox">
+      <ul id='getstartednav12'>
+        <li id='viewtheassignments12' class="hand_hover drop_down_get_started"/>
+        <li id='improvemywriting' class='hand_hover drop_down_get_started'/>
+        <li id='checkmyformatting' class='hand_hover drop_down_get_started'/>
+      </ul>
+      <div class="drop_down" id="drop_down_for_viewtheassignments12" >
+        <%
+           option_count = 0
+           @student.grade_level.assignment_topics.each do |assignment_topic|
+             option_count += 1
+        %>
+          <h4>Option <%= option_count %>: <%= assignment_topic.name %></h4>
+          <p><%= render :partial => "assignment_topics/#{assignment_topic.name.downcase.gsub(' ', '_')}"%></p>
+        <% end %>
+        <!--<%= image_tag 'hidebox_button.gif', :class => 'hide_box_button_get_started'%>-->
+      </div>
+      <div class="drop_down" id="drop_down_for_improvemywriting">
+        <%= render :partial => "resource_center/resources/#{@student.grade_level.level < 3 ? 'guidelines_level_1_2' : 'guidelines_level_3_6'}"%>
+        <!--<%= image_tag 'hidebox_button.gif', :class => 'hide_box_button_get_started'%>-->
+      </div>
+      <div class="drop_down" id="drop_down_for_checkmyformatting" >
+        <h4>Formatting Rules</h4>
+        <%= image_tag 'formattingrules_image.gif' %>
+        <p><%= image_tag '1circle_bullet.gif', :class => 'numberbullet' %>Write down your <strong>first name and last name initial</strong>, <strong>your level</strong>, the <strong>assignment</strong> you have selected, and the <strong>date</strong> your book report was written.</p>
+        <p><%= image_tag '2circle_bullet.gif', :class => 'numberbullet' %>Write the <strong>title of your book report</strong> and center it.</p>
+        <p><%= image_tag '3circle_bullet.gif', :class => 'numberbullet' %>Don’t forget to mention the <strong>title</strong> and <strong>author</strong> of your book in your first paragraph. Make sure the title of the book is underlined. </p>
+        <p><%= image_tag '4circle_bullet.gif', :class => 'numberbullet' %>Use <strong>Times New Roman font size 12</strong> and make suree the lines are <strong>double-spaced</strong>. Keep at least a <strong>2.5 cm margin</strong> all around the paper.</p>
+        <p><%= image_tag 'wordicon_bullet.gif', :class => 'numberbullet' %>VERY IMPORTANT NOTE: Be sure to save as a <strong>Microsoft Word Document</strong> or else it will not upload!</p>      <%= image_tag 'hidebox_button.gif', :class => 'hide_box_button'%>
+        <!--<%= image_tag 'hidebox_button.gif', :class => 'hide_box_button_get_started'%>-->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<h3>Submit Book Report</h3>
+<p>Use the form below to submit your book report.</p>
+
+<% form_for( :report,  :html => { :multipart => true, :class => 'ajax_form'}, :url => {:controller=> 'student_reports', :action => 'create'}) do |f| -%>
+  <% fields_for :book do |book| %>
+    <p class="nobreak">Book Title</p>
+    <%= book.text_field :title,  :class=>'getstartedfield'-%>
+    <p class="nobreak">Book Author</p>
+    <%= book.text_field :author, :class=>'getstartedfield'-%>
+    <p class="nobreak">Assignment Topic</p>
+    <% i = 0 %>
+    <% fields_for :assignment_topic do |t|
+      options = ['Please select one:'] + @student.grade_level.assignment_topics.collect {|topic| i+=1; ["Option #{i}: #{topic.name}",topic.id] }
+    %>
+      <%= t.select :id, options, {}, {:class=>'getstartedfield'}-%>
+    <% end -%>
+  <% end %>
+  <p class="nobreak">Attach Report (Must be in Microsoft Word format)</p>
+  <%= f.file_field  :submitted_doc, {:class=>'getstartedfilefield', :size=>'28'}-%>
+  <div class="ButtonLeft">
+    <%= image_submit_tag 'submitbookreport_button.gif', :class=>'submit_button' %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(".ajax_form").ajaxForm({
+    dataType: 'script',
+    beforeSubmit: function(xhr) {
+      $('.ErrorMessage').html(<%= partial '/shared/loading' %>);
+      $('.ErrorMessage').show();
+    }
+    , error: function() {
+    $('.ErrorMessage').html("<h1>There was an error</h1>");
+    $('.ErrorMessage').show();
+  }
+  });
+</script>
+
+<div class="ErrorMessage">
+</div>
+<div class="ClearAll"></div>
+<div id="errors"></div>

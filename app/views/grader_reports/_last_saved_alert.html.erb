@@ -1,0 +1,5 @@
+<li id="last_saved_alert" class="saved">
+  <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+  <p>You last saved this report <strong><%= convert_date_time_full_month(@grader.tz.utc_to_local(@report.last_saved_by_grader_at)) -%></strong>.</p>
+</td></tr></table>
+</li>

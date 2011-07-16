@@ -1,0 +1,4 @@
+<%=  link_to 'Download this file', {:action => :download_grader_doc, :id => @report  } %>  |  <span id="replace_grader_doc_link" class="linkcolor">Replace this file with a newer version  </span>
+<script type="text/javascript">
+  $('#replace_grader_doc_link').unbind('click').bind('click', replace_grader_doc_link_click_handler);
+</script>

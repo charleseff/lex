@@ -1,0 +1,42 @@
+<%   title "Help"-%>
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1>Help</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+</div>
+<% if flash[:message] -%>
+  <h1 class="BigMessage"><%= flash[:message] %></h1>
+<% end -%>
+
+<p>Lex Kim Book Reports is designed to be simple and easy to use. However, we recognize that things can go wrong, either due to human or computer error. Please use the form below to let us know if you've come across any problems, and we'll get back to you within 48 hours.</p>
+
+<% form_for :help_submission, :url => { :action => :submit, :id => @report} do |h| %>
+  <p class="nobreak">Problem</p>
+  <%= h.select(:problem,
+      ['Please select a problem',
+          'I attached the wrong file for my book report.',
+          'I made a mistake on the book title.',
+          'I made a mistake on the book author.',
+          'I selected the wrong assignment.',
+          'The graded book report that I received had the wrong file attached.',
+          'There was a problem with the Grader''s Comments/Performance Breakdown.',
+          'I would like to ask the grader a question.',
+          'Other; I will specify under Comments.'
+      ] ,
+      {},  {:class =>'selectfieldbig' }  ) %>
+
+  <p class="nobreak">Report (if applicable)</p>
+  <%
+     options = [['none selected','none']]
+     options += @student.reports.collect {|report| ["on #{report.book.title}, #{report.graded? ? "graded #{ convert_date_full_month(current_user.tz.utc_to_local(report.graded_at)) }" : "submitted #{convert_date_full_month(current_user.tz.utc_to_local(report.created_at))}"}",report.id] }
+  %>
+  <%= h.select(:report, options, {}, {:class =>'selectfieldbig' } ) -%>
+
+  <p class="nobreak">Comments</p>
+  <%= h.text_area :comment, { :class => 'getstartedfield', :rows=>5} %>
+  <br /><br />
+  <%= image_submit_tag 'submit_button.gif' , :class=>'submit_button'%>
+<% end %>

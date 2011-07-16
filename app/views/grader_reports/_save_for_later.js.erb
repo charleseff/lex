@@ -1,0 +1,21 @@
+$("#errors").hide();
+$('.ErrorMessage').hide();
+$('.ErrorMessage').html("<h1>You have saved this unfinished graded report.</h1>");
+$('.ErrorMessage').fadeIn('show');
+
+<% if @report.has_grader_doc? %>
+  $('#marked_book_report_section').html( <%= partial "marked_report_section_present" %> );
+
+  // replace event -
+  $('#replace_grader_doc_link').unbind('click').bind('click', replace_grader_doc_link_click_handler);
+<% end %>
+
+// also have to show updated grader doc thing at top:
+if ($('#last_saved_alert').length) {
+  $('#last_saved_alert').after(<%=  partial "last_saved_alert" %>).remove();
+}
+else {
+  $('#book_info_alert').before($(<%=  partial "last_saved_alert" %>));
+}
+
+window.scroll(0,document.body.scrollHeight);

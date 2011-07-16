@@ -1,0 +1,12 @@
+<table cellpadding="0" cellspacing="0">
+  <% dialog_messages.each do |message| %>
+    <tr class="<%= message.speaker == 'Student' ? 'OddRow' : 'EvenRow' %>">
+      <td class="DiscussCol1"><p class="smallnobreak"><%= message.created_at.strftime('%b %d, %Y; %I:%M %p') %></p></td>
+      <td class="DiscussCol2"><p><%= (message.speaker == 'Student' and is_student?) ? 'You' :
+              (message.speaker == 'Student' and not is_student?) ? 'The Student' :
+                      (message.speaker == 'Grader' and is_student?) ? 'The Grader' :
+                              'You' %> wrote:</p></td>
+      <td class="DiscussCol3"><p><strong>"<%= substitute_breaks(message.message) %>"</strong></p></td>
+    </tr>
+  <% end %>
+</table><br/>

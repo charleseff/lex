@@ -1,0 +1,5 @@
+jodconverter_url: "http://localhost:8080/converter/service"
+lexkimbookreports_home: "http://not_real"
+lexkimbookreports_home_ssl: "https://not_real"
+data_dir: "<%=RAILS_ROOT%>/tmp/test/data/lexkimbookreports"
+admin_emails: ['charles.finkel@barrelny.com']

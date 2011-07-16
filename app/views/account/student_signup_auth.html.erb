@@ -1,0 +1,8 @@
+<%= error_messages_for :user %>
+<% title "Student Signup: Enter Passcode" %>
+<%  form_tag :action => :student_enter_passcode do -%>
+  <p class="label"><label for="passcode">Please enter the passcode to continue:</label></p>
+    <%= password_field_tag :passcode, {}, :class=>'inputfield' %>
+  <%= image_submit_tag 'continue_button.gif' %>
+ 
+<% end -%>

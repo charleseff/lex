@@ -1,0 +1,29 @@
+grade_level_1:
+  level: 1
+#  ptal_task_items: ptal_task_item_1, ptal_task_item_2, ptal_task_item_3, ptal_task_item_4, ptal_task_item_5, ptal_task_item_6, ptal_task_item_7, ptal_task_item_8, ptal_task_item_9, ptal_task_item_10, ptal_task_item_11, ptal_task_item_12, ptal_task_item_13, ptal_task_item_14, ptal_task_item_15
+  assignment_topics: one
+
+grade_level_2:
+  level: 2
+#  ptal_task_items: ptal_task_item_1, ptal_task_item_2, ptal_task_item_3, ptal_task_item_4, ptal_task_item_5, ptal_task_item_6, ptal_task_item_7, ptal_task_item_8, ptal_task_item_9, ptal_task_item_10, ptal_task_item_11, ptal_task_item_12, ptal_task_item_13, ptal_task_item_14, ptal_task_item_15
+  assignment_topics: one
+
+grade_level_3:
+  level: 3
+#  ptal_task_items: ptal_task_item_1, ptal_task_item_2, ptal_task_item_3, ptal_task_item_4, ptal_task_item_5, ptal_task_item_6, ptal_task_item_7, ptal_task_item_8, ptal_task_item_9, ptal_task_item_10, ptal_task_item_11, ptal_task_item_12, ptal_task_item_13, ptal_task_item_14, ptal_task_item_15
+  assignment_topics: two, three, four
+
+grade_level_4:
+  level: 4
+#  ptal_task_items: ptal_task_item_1, ptal_task_item_2, ptal_task_item_3, ptal_task_item_4, ptal_task_item_5, ptal_task_item_6, ptal_task_item_7, ptal_task_item_8, ptal_task_item_9, ptal_task_item_10, ptal_task_item_11, ptal_task_item_12, ptal_task_item_13, ptal_task_item_14, ptal_task_item_15
+  assignment_topics: two, three, four
+
+grade_level_5:
+  level: 5
+#  ptal_task_items: ptal_task_item_1, ptal_task_item_2, ptal_task_item_3, ptal_task_item_4, ptal_task_item_5, ptal_task_item_6, ptal_task_item_7, ptal_task_item_8, ptal_task_item_9, ptal_task_item_10, ptal_task_item_11, ptal_task_item_12, ptal_task_item_13, ptal_task_item_14, ptal_task_item_15
+  assignment_topics: five, six, seven
+
+grade_level_6:
+  level: 6
+#  ptal_task_items: ptal_task_item_1, ptal_task_item_2, ptal_task_item_3, ptal_task_item_4, ptal_task_item_5, ptal_task_item_6, ptal_task_item_7, ptal_task_item_8, ptal_task_item_9, ptal_task_item_10, ptal_task_item_11, ptal_task_item_12, ptal_task_item_13, ptal_task_item_14, ptal_task_item_15
+  assignment_topics: five, six, seven

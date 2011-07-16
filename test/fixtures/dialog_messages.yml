@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+bobby_and_sean_bobby_talking:
+  id: 1
+  report_id: 2
+  message: What's wrong with my report?
+  created_at:  <%= 3.days.ago.to_s :db %>
+
+bobby_and_sean_sean_talking:
+  id: 2
+  report_id: 2
+  message: Everything.
+  created_at:  <%= 2.days.ago.to_s :db %>

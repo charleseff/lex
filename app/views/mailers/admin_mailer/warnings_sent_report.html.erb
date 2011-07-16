@@ -1,0 +1,7 @@
+Warnings Sent Report
+
+The system has detected that the following graders are close to the due date for grading their reports, and has sent out email warnings.
+
+<% @reports.each do |report| %>
+  Grader id #<%=report.grader.id%>, <%= h report.grader.full_name %>: report #<%= report.id %> by Student #<%= report.student.id %>, <%= h report.student.full_name %>
+<% end %>

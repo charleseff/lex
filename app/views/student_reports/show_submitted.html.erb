@@ -1,0 +1,29 @@
+<div id="FullCol">
+  <div class="FullColSection">
+    <div id="FullColLeft">
+      <h1><%= h(@report.book.title) %> by <%= h(@report.book.author) %></h1>
+    </div>
+    <div id="FullColRight">
+      <p><%= link_to 'Return to Home', root_path %></p>
+    </div>
+    <div class="ClearAll"></div>
+    <div class="AlertBox">
+      <ul>
+        <li class="grading last">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+            <p>This report was submitted on <%= convert_date_full_month(current_user.tz.utc_to_local(@report.created_at)) %>.     <%= link_to 'View the original submitted book report', :action => :download_submitted_doc, :id => @report %>.</p>
+          </td></tr></table>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="CurrentlyGradingMessage">
+    <h1 class="BigMessage">
+      <% if @report.has_grader? %>
+        This book report is currently being graded.  You will receive an e-mail once it is ready.
+      <% else %>
+        You will receive an e-mail once your book report has been graded.
+      <% end %>
+    </h1>
+  </div>
+</div>

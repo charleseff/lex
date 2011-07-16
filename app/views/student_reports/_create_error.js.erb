@@ -1,0 +1,10 @@
+$('.submit_button').removeAttr("disabled");
+$('.submit_button').fadeTo(0, 1);
+
+$('.ErrorMessage').hide();
+
+$('#errors').hide();
+$('#errors').html(<%= partial '/shared/alerts/errors', :locals => {:header => 'There were errors with your report.', :messages => @errors} %>);
+$('#errors').fadeIn('slow');
+
+window.scroll(0,document.body.scrollHeight);

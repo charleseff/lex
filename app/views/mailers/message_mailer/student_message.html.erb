@@ -1,0 +1,9 @@
+Hello from Lex Kim!
+
+You have a message from student <%= h @report.student%> regarding the report on <%= h @report.book.title %> by <%= h @report.book.author %>.   Please read the student's message carefully and respond appropriately to any inquiries.
+
+You can view the message by following the link below:
+<%=APP_CONFIG['lexkimbookreports_home'] %>/grader_reports/show/<%=@report.id%>
+
+Thanks,
+Lex Kim English School

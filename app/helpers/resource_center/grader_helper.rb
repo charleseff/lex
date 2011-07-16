@@ -1,0 +1,2 @@
+module ResourceCenter::GraderHelper
+end

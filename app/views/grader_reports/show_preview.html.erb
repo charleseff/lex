@@ -1,0 +1,61 @@
+<%
+   title "Preview"
+   grader = current_user
+-%>
+
+<!--
+todo
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    $('.submit_button').click( function() {
+      $(this).attr("disabled","disabled");
+      $(this).fadeTo("slow", 0.25);
+    });
+  });
+</script>
+-->
+
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1><%= h(@report.book.title) %> by <%= h(@report.book.author) %> (Grade <%= @report.grade_level.level %>)</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+  <div class="ClearAll"></div>
+  <div class="AlertBox">
+    <ul>
+      <li class="preview last">
+        <table cellpadding="0" cellspacing="0"><tbody><tr vertical-align="middle" height="31"><td>
+          <p><strong>Please review the book report.</strong><br> To confirm and send to student, scroll down and click on "Submit Book Report Grade".</p>
+        </td></tr></tbody></table>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="FullColSection">
+  <h1>Book Report Assessment</h1>
+  <h3>Selected Book Report Assignment</h3>
+  <div class="AssignmentBox">
+    <h4><%= @report.assignment_topic.name %></h4>
+    <p><%= render :partial => "assignment_topics/#{@report.assignment_topic.name.downcase.gsub(' ', '_')}"%></p>
+  </div>
+</div>
+<div class="FullColSection">
+  <%= render :partial => "/shared/reports/swf_report" %>
+
+  <%= link_to image_tag('downloadgraded_button.gif', {:class => 'buttonbigbottomspace'}),{:action => :download_graded_pdf, :id => @report} %>
+</div>
+
+<div class="FullColSection">
+  <h3>Grader's Comments</h3>
+  <div class="CommentsBox">
+    <%= substitute_paragraphs(@report.grader_comment) %>  </div>
+</div>
+<h3>Performance Breakdown</h3>
+<%= render(:partial => 'shared/graded_ptal') %>
+
+<% form_tag :action => :grade, :id => @report do -%>
+  <%= link_to image_tag('gobackmakechanges_button.gif'), {:controller => 'grader_reports', :action => :show, :id => @report} %>
+  <%= image_submit_tag 'submitbookreportgrade_button.gif' , :class=>'submit_button'%>
+<% end %>

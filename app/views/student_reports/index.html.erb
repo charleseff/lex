@@ -1,0 +1,67 @@
+<%   title "Book Reports" -%>
+<div id="FullCol">
+  <div class="FullColSection">
+    <div id="FullColLeft">
+      <h1>My Book Reports</h1>
+    </div>
+    <div id="FullColRight">
+      <p><%= link_to 'Return to Home', root_path %></p>
+    </div>
+  </div>
+  <div class="FullColSection">
+    <h3>Submitted Book Reports (Currently Being Graded)</h3>
+    <% if @student.ungraded_reports.empty? %>
+      <p>You do not have any ungraded book reports.</p>
+    <% else %>
+      <div class="AlertBox">
+        <ul>
+          <%
+             report_number = 0
+             @student.reports_not_assigned_to_a_grader.each do |report|
+               report_number += 1
+          %>
+            <li class="grading<%=report_number == @student.ungraded_reports.size ? ' last' : '' %>">
+              <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+                <p><%= link_to "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)}</strong>", { :controller => :student_reports, :action => :show, :id => report } %> was submitted on <%= convert_date_full_month(current_user.tz.utc_to_local(report.created_at)) %>.</p>
+              </td></tr></table>
+            </li>
+          <%
+             end
+             @student.reports_assigned_to_a_grader_but_ungraded.each do |report|
+               report_number += 1
+          %>
+            <li class="grading<%=report_number == @student.ungraded_reports.size ? ' last' : '' %>">
+              <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+                <p><%= link_to "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)}</strong>", { :controller => :student_reports, :action => :show, :id => report } %>, submitted on <%= convert_date_full_month(current_user.tz.utc_to_local(report.created_at)) %>, is currently being graded.</p>
+              </td></tr></table>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <h3>Graded Book Reports</h3>
+  <p>You currently have <span class="RedGrade"><%= @student.graded_reports.length %></span> graded book report<%= @student.graded_reports.length != 1 ? 's' : ''%>.
+    <% if not @student.graded_reports.empty? %>
+      Your average grade is <%= @student.average_grade_indefinite_article %> <span class="RedGrade"><%= @student.average_grade %></span>.
+    <%end%>
+  </p>
+  <% if not @student.graded_reports.empty?
+    report_number = 0
+  %>
+    <div class="AlertBox">
+      <ul>
+        <% @student.graded_reports.each do |report|
+          report_number += 1
+        %>
+          <li class="graded<%=report_number == @student.graded_reports.size ? ' last' : '' %>">
+            <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+              <p><%= link_to "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)}</strong>", { :controller => :student_reports, :action => :show, :id => report } %> was graded on <%= convert_date_full_month(current_user.tz.utc_to_local(report.graded_at)) %>. Your grade was <%= report.final_grade_indefinite_article %> <span class="RedGrade"><%= report.final_grade %></span>.</p>
+            </td></tr></table>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+</div>

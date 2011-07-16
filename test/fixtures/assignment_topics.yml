@@ -1,0 +1,22 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Book Review
+
+two:
+  name: Character Development
+
+three:
+  name: Settings
+
+four:
+  name: Dreams and Goals
+
+five:
+  name: Relationships
+
+six:
+  name: Symbolism
+
+seven:
+  name: Positive and Negative Portrayal

@@ -1,0 +1,7 @@
+<h3>Marked Book Report</h3>
+<% if not ( @report.graded? and ( @report.graded_at < Time.utc(2008, "mar", 1, 0,0,0)) )  %>
+  <object width="665" height="861">
+    <param name="movie" value="<%= is_student? ? student_show_flash_path : is_grader? ? grader_show_flash_path : administrator_show_flash_path%>">
+    <embed src="<%= is_student? ? student_show_flash_path : is_grader? ? grader_show_flash_path : administrator_show_flash_path %>" width="665" height="861"/>
+  </object>
+<% end %>

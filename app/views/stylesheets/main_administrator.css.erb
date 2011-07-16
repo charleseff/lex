@@ -1,0 +1,111 @@
+/*--------------MISCELLANEOUS----------------*/
+
+/* Outer bounding box for all pages */
+#Frame {
+  margin: 0px auto 0px auto;
+  padding: 0px;
+  background: #ffffff;
+  border-left: 10px solid #124866;
+  border-right: 10px solid #124866;
+  width: 690px; }
+
+/* Basic header style applied to H1 element */
+/* Phark Image Replacement Technique */
+
+
+#Header{
+  position: relative;
+  margin: 0px auto 0px auto;
+  padding:0px 0px 0px 0px;
+  width: 690px;
+  height: 100px;
+  background: #124866;
+}
+
+/*-------------NAVIGATION----------------*/
+#navigation {
+  height: 24px;
+  width: 690px;
+  margin: 20px 0 0px 0px;
+  padding: 0;
+  position: relative;
+  float: right;
+}
+
+
+#nav_welcome a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -23px -48px no-repeat;}
+#nav_bookreports a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -112px -48px no-repeat;}
+#nav_resourcecenter a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -245px -48px no-repeat;}
+#nav_help a:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -597px -48px no-repeat;}
+
+#nav_welcome a.selected:link, #nav_welcome a.selected:hover, #nav_welcome a.selected:visited, #nav_welcome a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -23px -24px no-repeat;}
+#nav_bookreports a.selected:link, #nav_bookreports a.selected:hover, #nav_bookreports a.selected:visited, #nav_bookreports a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -112px -24px no-repeat;}
+#nav_resourcecenter a.selected:link, #nav_resourcecenter a.selected:hover, #nav_resourcecenter a.selected:visited, #nav_resourcecenter a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -245px -24px no-repeat;}
+#nav_help a.selected:link, #nav_help a.selected:hover, #nav_help a.selected:visited, #nav_help a.selected:visited:hover { background: url(<%= @controller.request.relative_url_root %>/images/navigation.gif) -597px -24px no-repeat;}
+
+/*---------------LAYOUT BOXES----------------------*/
+
+
+.FieldLeft {
+  float: left;
+  width: 380px;
+  padding: 0 10px 0 0;
+}
+
+.ErrorMessageRight {
+  float: left;
+  width: 250px;
+  padding: 4px 0 0px 0;
+}
+
+
+
+/*---------------------Graded Page-----------------------*/
+
+.Col2{
+  width: 101px;
+  padding: 10px 0 10px 0;
+  text-align: center;
+}
+
+/*---------------------Misc-----------------------*/
+
+
+/*-------------------Body Text-----------------------*/
+
+#BodyText h1 {
+  padding: 0px 0px 15px 0px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  color: #000000; }
+
+#BodyText .ErrorMessageRight h1 {
+  padding: 0px 0px 15px 0px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  color: #B50938; }#BodyText a:link, #BodyText a:visited { color: #CC4509; text-decoration: none;}
+#BodyText a:hover, #BodyText a:visited:hover { color: #124866;text-decoration: underline; }
+
+#BodyText p a:link, #BodyText p a:visited { color: #CC4509; text-decoration: underline; font-weight: normal;}
+#BodyText p a:hover, #BodyText p a:visited:hover { color: #124866;text-decoration: underline; font-weight: normal;}
+
+#BodyText p a.ReportLink:link, #BodyText p a.ReportLink:visited { color: #AA690C; text-decoration: none; font-weight: bold;}
+#BodyText p a.ReportLink:hover, #BodyText p a.ReportLink:visited:hover { color: #5D87A1;text-decoration: underline; font-weight: bold;}
+
+#BodyText h6 a:link, #BodyText h6 a:visited { color: #FFCF01; text-decoration: none; font-weight: normal;}
+#BodyText h6 a:hover, #BodyText h6 a:visited:hover { color: #ffffff;text-decoration: underline; font-weight: normal;}
+
+/*-------------- Copyright Footer -----------------*/
+#Copyright {
+  margin: 0px auto 0px auto;
+  border-left: 10px solid #124866;
+  border-right: 10px solid #124866;
+  width: 690px;
+  padding: 0px 0px 12px 0px;
+  text-align: right;
+  background: #124866;
+}

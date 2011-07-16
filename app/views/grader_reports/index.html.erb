@@ -1,0 +1,47 @@
+<%   @page_title = "Reports" %>
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1>My Book Reports</h1>
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+</div>
+<div class="FullColSection">
+  <h3>Currently Grading</h3>
+  <% if @grader.ungraded_reports.empty?
+  %>
+    <p>You are not currently grading any reports.</p>
+  <% else
+    ungraded_report = @grader.ungraded_reports[0]
+  %>
+    <div class="AlertBox">
+      <ul>
+        <li class="grading last">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+            <p><%= link_to "<strong><em>#{h(ungraded_report.book.title)}</em> by #{h(ungraded_report.book.author)}  (by #{h(ungraded_report.student.first_name_last_initial)}, Grade #{GradeLevel.lex_kim_to_american(ungraded_report.grade_level.level)})</strong>", { :controller => :grader_reports, :action => :show, :id => ungraded_report } %> is due <strong><%= convert_date_time_full_month(@grader.tz.utc_to_local(ungraded_report.grading_due)) -%></strong>.</p>
+          </td></tr></table>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</div>
+<h3>Graded Book Reports</h3>
+<p>You have graded <span class="RedGrade"><%= @grader.graded_reports.length %></span> book report<%= @grader.graded_reports.length != 1 ? 's' : ''%>.</p>
+<% if not @grader.graded_reports.empty?
+  report_number = 0
+%>
+  <div class="AlertBox">
+    <ul>
+      <%   @grader.graded_reports.each do |report|
+        report_number += 1
+      %>
+        <li class="graded<%=report_number == @grader.graded_reports.size ? ' last' : '' %>">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+            <p><%= link_to "<strong><em>#{h(report.book.title)}</em> by #{h(report.book.author)} (by #{h(report.student.first_name_last_initial)}, Grade #{GradeLevel.lex_kim_to_american(report.grade_level.level)})</strong>", { :controller => :grader_reports, :action => :show, :id => report } %> was graded on <%= convert_date_full_month(@grader.tz.utc_to_local(report.graded_at)) %>. You gave <%= report.final_grade_indefinite_article %> <span class="RedGrade"><%= report.final_grade %></span>.</p>
+          </td></tr></table>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

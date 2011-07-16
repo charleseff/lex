@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag 'minimized.css', :media => 'screen'  %>
+  <%= stylesheet_link_tag 'shared.css' %>
+  <%= javascript_include_tag  (ENV['RAILS_ENV'] == 'development' ? 'jquery-1.2.3.js' : 'jquery-1.2.3.min.js') %>
+  <%= javascript_include_tag 'jquery.delegate.js' %>
+  <%= javascript_include_tag 'jquery.form.js' %>
+
+  <title>Lex Kim Book Reports :: <%= h(@page_title) %></title>
+</head>
+<body>
+<div id="Frame">
+  <div id="Header">
+    <% if controller.action_name == 'message_no_links' %>
+      <%= image_tag('lexkimbookreports_logintitle.gif') %>
+    <% else %>
+      <%= link_to image_tag('lexkimbookreports_logintitle.gif'), root_path %>
+    <% end %>
+  </div>
+  <div class="ClearAll"></div>
+
+
+
+  <div id="Content">
+    <div id="BodyText">
+      <div id="FullCol">
+        <% if @notice -%>
+          <h1 class="BigMessage"><%= @notice %></h1>
+        <% end -%>
+        <% if @error -%>
+          <h1 class="ErrorMessage"><%=@error %></h1>
+        <% end -%>
+        <% if flash[:notice] -%>
+          <h1 class="BigMessage"><%= flash[:notice] %></h1>
+        <% end -%>
+        <% if flash[:error] -%>
+          <h1 class="ErrorMessage"><%=flash[:error] %></h1>
+        <% end -%>
+
+        <%= yield  %>
+
+      </div>
+    </div>
+  </div>
+  <div class="ClearAll"></div>
+</div>
+
+<%= (google_analytics = yield :google_analytics) ? google_analytics : render(:partial => 'shared/google_analytics') %>
+
+</body>
+</html>

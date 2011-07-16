@@ -1,0 +1,98 @@
+<%
+item_number = 1
+1.upto(6) do |grade_level|
+%>
+ptal_task_item_<%=item_number%>:
+  category: A. Structure
+  description: Includes an appropriate title
+  possible_points: 1
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+1%>:
+  category: A. Structure
+  description: Length does not exceed 3 pages
+  possible_points: 1
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+2%>:
+  category: A. Structure
+  description: Clear introduction, conclusion, and at least two supporting paragraphs
+  possible_points: 4
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+3%>:
+  category: A. Structure
+  description: Thesis is clearly stated in the introductory paragraph
+  possible_points: 2
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+4%>:
+  category: A. Structure
+  description: Topic sentences for supporting paragraphs provide an overview of the paragraph
+  possible_points: 4
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+5%>:
+  category: B. Content
+  description: Supporting paragraphs develop the thesis
+  possible_points: 4
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+6%>:
+  category: B. Content
+  description: At least five supporting details or examples from the book are discussed in supporting paragraphs
+  possible_points: 15
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+7%>:
+  category: B. Content
+  description: Introduction provides a brief plot summary
+  possible_points: 2
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+8%>:
+  category: B. Content
+  description: Conclusion summarizes the main points supporting the thesis
+  possible_points: 2
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+9%>:
+  category: C. Style
+  description: Thesis offers an interesting analysis of the book
+  possible_points: 3
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+10%>:
+  category: C. Style
+  description: Writer''s voice is original
+  possible_points: 3
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+11%>:
+  category: C. Style
+  description: Writer balances story details with his or her analysis
+  possible_points: 3
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+12%>:
+  category: D. Mechanics
+  description: Student writes in complete sentences (avoids run-ons and fragments) with few errors.
+  possible_points: 2
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+13%>:
+  category: D. Mechanics
+  description: Student uses correct punctuation with few errors.
+  possible_points: 2
+  grade_level: grade_level_<%=grade_level%>
+
+ptal_task_item_<%=item_number+14%>:
+  category: D. Mechanics
+  description: Student maintains a consistent tense (the present tense) throughout the work
+  possible_points: 2
+  grade_level: grade_level_<%=grade_level%>
+
+<%
+  item_number += 15
+end
+%>

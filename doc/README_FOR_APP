@@ -1,0 +1,23 @@
+Use this README file to introduce your application and point to useful places in the API for learning more.
+Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+
+
+Lex Kim Book Reports site
+
+=In order to run this app, you must have the following installed and available at the command line:
+
+1. Java
+2. pdf2swf - via http://www.swftools.org/, also avaialable via apt-get in Debian/Ubuntu
+3. ODF converter - via http://www.oooninja.com/2008/01/convert-openxml-docx-etc-in-linux-using.html and
+  http://www.oooninja.com/2008/01/openxml-translator-odf-converter-11.html
+  Run:
+
+     sudo ln -s /usr/lib/libtiff.so.4 /usr/lib/libtiff.so.3
+
+  For this to work I also had to create a link:
+
+    sudo ln -s /usr/lib/libtiff.so.4 /usr/lib/libtiff.so.3
+
+For JodConverter to work, must have the openoffice daemon running, using xvfb ( sudo aptitude install xvfb) with command like:
+  sudo nohup  xvfb-run -a soffice -headless -accept="socket,port=8100;urp;"
+Also make sure package openoffice.org is install on Debian machine

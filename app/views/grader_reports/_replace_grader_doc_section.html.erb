@@ -1,0 +1,13 @@
+<br/><p class="nobreak">Replace file with newer version:</p>
+<% fields_for :report do |r| %>
+  <%= r.file_field  :grader_doc, {:class=>'getstartedfilefieldnobreak', :size=>'35'} %>&nbsp;<span id="replace_grader_doc_cancel" class="linkcolor">Cancel</span>
+<% end %>
+<p class="smalltext">Note: The old Microsoft Word file will be replaced once you save or continue to next page.</p>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    $('#replace_grader_doc_cancel').click(function() {
+      $('#replace_grader_doc_section').html(<%= partial 'replace_grader_doc_original' %>)
+    });
+  });
+
+</script>

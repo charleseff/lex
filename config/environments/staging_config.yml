@@ -1,0 +1,5 @@
+jodconverter_url: "http://localhost:8080/converter/service"
+lexkimbookreports_home: "http://lexkimbookreports.cmanfu.com"
+lexkimbookreports_home_ssl: "https://lexkimbookreports.cmanfu.com"
+data_dir: "/var/data/lexkimbookreports"
+admin_emails: ['lex_admin@barrelny.com']

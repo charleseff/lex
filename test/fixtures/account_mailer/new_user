@@ -1,0 +1,7 @@
+Hello from Lex Kim Book Reports, <%= @user.first_name %>!
+
+You are almost finished activating your account.  Just click on the link below to complete activation:
+<%= LEX_KIM_BOOK_REPORTS_HOME %>/account/confirm/<%=@code%>
+
+Thanks,
+Lex Kim English School

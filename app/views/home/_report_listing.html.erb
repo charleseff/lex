@@ -1,0 +1,30 @@
+<%
+   controller = (current_user.is_a? Student) ? :student_reports : :grader_reports
+%>
+<div class="HalfColSectionBody">
+  <%  for i in 0..reports.size-1
+    report = reports[i]  -%>
+    <div class="<%= i ==  reports.size-1 ? 'BookReportListingSingle' : 'BookReportListing'%>">
+      <div class="BookReportListingIcon">
+        <%= link_to  "#{image_tag image_icon(report_type)}", { :controller => controller, :action => :show, :id => report } %>
+      </div>
+      <div class="BookReportListingDesc">
+        <p class="nobreak"><%= link_to "#{report.book.title} <em>by</em> #{report.book.author}" ,
+                { :controller => controller, :action => :show, :id => report}, { :class=>'ReportLink'} -%></p>
+        <p class="smallnobreak">
+          <% if report_type == 'submitted' -%>
+            SUBMITTED <%= convert_date(current_user.tz.utc_to_local(report.created_at)).upcase -%>.
+          <% elsif report_type == 'graded' -%>
+            GRADED <%= convert_date(current_user.tz.utc_to_local(report.graded_at)).upcase -%>.
+            <strong>ACTIVE UNTIL <%= convert_date_time(current_user.tz.utc_to_local(report.time_active_until)).upcase-%></strong>
+          <% elsif report_type == 'archived' -%>
+            GRADED <%= convert_date(current_user.tz.utc_to_local(report.graded_at)).upcase -%>.
+          <% elsif report_type == 'grader_ungraded' -%>
+            PICKED UP <%= convert_date(current_user.tz.utc_to_local(report.assigned_to_grader_at)).upcase -%>. <strong>GRADING DUE
+          <%= convert_date_time(current_user.tz.utc_to_local(report.grading_due)).upcase   -%></strong>
+          <% end -%>
+        </p>
+      </div>
+    </div>
+  <% end-%>
+</div>

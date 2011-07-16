@@ -1,0 +1,31 @@
+<%   title "Resource Center" -%>
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h1>Resource Center</h1>
+
+  </div>
+  <div id="FullColRight">
+    <p><%= link_to 'Return to Home', root_path %></p>
+  </div>
+</div>
+<div class="FullColSection">
+  <h3>Helpful Materials</h3>
+  <p>Use the following guides to learn more about writing better book reports. </p>
+
+  <div class="AlertBox">
+    <ul>
+      <%
+         count = 0
+         @student.grade_level.resources.each do |resource|
+           count += 1
+      %>
+        <li class="resource<%= count == @student.grade_level.resources.size ? ' last' : ''%>">
+          <table cellpadding="0" cellspacing="0"><tr vertical-align="middle" height="31"><td>
+            <p><%= link_to "<strong>#{resource.name}</strong>" , student_resource_center_path(:action =>'resource', :id => resource.id)%>
+              <br/><%= resource.subheading %></p>
+          </td></tr></table>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

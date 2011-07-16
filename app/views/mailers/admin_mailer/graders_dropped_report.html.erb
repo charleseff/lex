@@ -1,0 +1,8 @@
+Graders Dropped Report
+
+The system has detected the following graders to have surpassed the allotted time to grade their report, and has dropped them from grading that report.
+Both grader and student have been notified, and the report is now back in the report queue with high priority.
+
+<% @reports.each do |report| %>
+  Grader id #<%=report.grader.id%>, <%= h(report.grader.full_name) %>: report #<%= report.id %> by Student #<%= report.student.id %>, <%= h report.student.full_name %>
+<% end %>

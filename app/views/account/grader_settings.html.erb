@@ -1,0 +1,69 @@
+<% title "Account Settings"%>
+<% if @errors and not @errors.empty? %>
+  <%= render :partial => '/shared/alerts/errors', :locals => {:header => 'There were errors saving your settings.', :messages => @errors} %>
+<% end %>
+<div class="FullColSection">
+  <div id="FullColLeft">
+    <h2>Update Account Settings</h2>
+  </div>
+  <div id="FullColRight">
+    <p class="smalltext"><%= link_to 'Return to Home', root_path %></p>
+  </div>
+</div>
+
+<% if @update_notice -%>
+  <div class="FullColSection">
+    <h1 class="BigMessage"><%= @update_notice %></h1>
+  </div>
+<% end -%>
+
+<div class="FullColSection">
+
+  <h3>Personal Information</h3>
+  <% form_for :current_user do |f| -%>
+
+    <p class="label"><label for="first_name">First Name</label></p>
+    <%= f.text_field :first_name, :class=>'inputfield' %>
+
+    <p class="label"><label for="last_name">Last Name</label></p>
+    <%= f.text_field :last_name, :class=>'inputfield' %>
+
+    <p class="label"><label for="grade_level"><strong>Preferred Grade Levels</strong></label></p>
+    <p class="nobreak">Select any grade levels that you would prefer to grade:</p>
+    <p class="smalltext">Note: Selecting preferred grade levels does not guarantee only those
+      levels. You will still be required to grade other levels.</p>
+    <% 1.upto(6) do |i| -%>
+      <p class="nobreak"><%= check_box_tag "current_user[preferred_grade_level_form_hash][]", i.to_s, current_user.preferred_grade_level_form_hash[i]  -%> Grade <%= GradeLevel.lex_kim_to_american(i) %></p>
+    <% end -%>
+
+    <br />
+
+    <p class="label"><label for="time_zone" >Select your time zone:</label></p>
+    <%= f.time_zone_select :time_zone, TZInfo::Timezone.all.sort, {:model => TZInfo::Timezone},{:class=>'inputfield'}%>
+
+    <p><%= image_submit_tag 'changepersonalinformation_button.gif' %></p>
+  <% end -%>
+</div>
+
+<div class="FullColSection">
+  <h3>Change Email Address</h3>
+  <% form_for :current_user, :url => {:action => :change_email_request} do |f| -%>
+    <p class="label"><label for="email">Email</label></p>
+    <%= f.text_field :email, :class=>'inputfield' %>
+    <p><%= image_submit_tag 'changeemailaddress_button.gif' %></p>
+  <% end -%>
+</div>
+
+<div class="FullColSection">
+  <h3>Change Password</h3>
+  <% form_for :current_user, :url => {:action => :change_password} do |f| -%>
+
+    <p class="label"><label for="password">Password</label></p>
+    <%= f.password_field :password, :class=>'inputfield' %>
+
+    <p class="label"><label for="password_confirmation">Confirm Password</label></p>
+    <%= f.password_field :password_confirmation, :class=>'inputfield' %>
+
+    <p><%= image_submit_tag 'changepassword_button.gif' %></p>
+  <% end -%>
+</div>

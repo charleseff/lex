@@ -1,0 +1,6 @@
+<div class="uploadedfile">
+  <p class="nobreak"><em><strong><%= h @report.student.first_name_last_initial %>'s marked book report uploaded <%= convert_date_time_full_month(current_user.tz.utc_to_local(@report.grader_doc_updated_at)) %>.</strong></em><br/>
+    <span id="replace_grader_doc_section">
+      <%= render :partial => 'replace_grader_doc_original' %>
+  </span></p><br />
+</div>

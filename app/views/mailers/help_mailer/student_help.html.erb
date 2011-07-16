@@ -1,0 +1,12 @@
+Student #<%= @student.id %>, <%= h @student.full_name %> <<%= h @student.email%>> (Level <%= @student.grade_level.level %>) has requested help regarding problem:
+
+    <%= h @problem %>
+<% if @report %>
+Regarding:
+  
+    Report #<%= @report.id %> on <%= h @report.book.title %><% if @report.graded? %>, graded by grader #<%= @report.grader.id %>, <%= h @report.grader.full_name %><% end %>
+<% end %><% if @comment and @comment != '' %>
+With comment:
+
+    <%= h @comment %>
+<% end %>
